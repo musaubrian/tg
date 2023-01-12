@@ -35,17 +35,17 @@ func addSite() {
 }
 
 func updateSite() {
-    var site Site
+	var site Site
 
-    siteName := getInput("Site to update")
-    db.Where("name = ?", siteName).First(&site)
-    fmt.Println("\nEditing: ", site.Name)
-    fmt.Printf("Old details\nSiteName: {%s}  UserName {%s}  Password {%s}\n", site.Name, site.UserName, site.Password)
-    site.Name = getInput("New site name")
-    site.UserName = getInput("New userName")
-    site.Password = getInput("New Password")
-    db.Save(&site)
-    fmt.Println("Updated Successfully")
+	siteName := getInput("Site to update")
+	db.Where("name = ?", siteName).First(&site)
+	fmt.Println("\nEditing: ", site.Name)
+	fmt.Printf("Old details\nSiteName: {%s}  UserName {%s}  Password {%s}\n", site.Name, site.UserName, site.Password)
+	site.Name = getInput("New site name")
+	site.UserName = getInput("New userName")
+	site.Password = getInput("New Password")
+	db.Save(&site)
+	fmt.Println("Updated Successfully")
 }
 func deleteSite() {}
 
@@ -89,7 +89,7 @@ func TinyGo() {
 	case "d":
 		fmt.Println("chose d")
 	case "u":
-        updateSite()
+		updateSite()
 	case "l":
 		listAll()
 	default:
