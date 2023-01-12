@@ -1,8 +1,6 @@
 package utils
 
-import (
-	"os"
-)
+import "os"
 
 // Creates the 'db/' directory
 // Skippes it if the directory exist

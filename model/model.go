@@ -3,7 +3,6 @@
 package model
 
 import (
-//	"fmt"
 	"log"
 
 	"gorm.io/driver/sqlite"
@@ -16,7 +15,6 @@ var db *gorm.DB
 
 // Site defines the structure of the db
 type Site struct {
-    gorm.Model
     ID uint64 `json:"id" gorm:"not null prinmaryKey"`
     Name string `json:"name" gorm:"not null`
     UserName string `json:"userName" gorm:"not null"`

@@ -4,7 +4,6 @@ package model
 
 import (
 	"bufio"
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -46,10 +45,8 @@ func searchSite(){
 }
 func listAll(){
     var sites []Site
-    result := db.Find(&sites)
-    a, _ := json.Marshal(result)
-
-    fmt.Println(a)
+    _ := db.Find(&sites)
+    
 }
 
 
