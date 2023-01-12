@@ -15,10 +15,10 @@ var db *gorm.DB
 
 // Site defines the structure of the db
 type Site struct {
-    ID uint64
-    Name string
-    UserName string
-    Password string
+	ID       uint64
+	Name     string
+	UserName string
+	Password string
 }
 
 // SetupDb creates a connection to the db
@@ -28,7 +28,7 @@ func SetupDb() {
 
 	db, err = gorm.Open(sqlite.Open("./db/tinygo.db"), &gorm.Config{})
 	if err != nil {
-        log.Fatal("Could not open db: ", err)
+		log.Fatal("Could not open db: ", err)
 		panic(err)
 	}
 
