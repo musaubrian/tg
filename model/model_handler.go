@@ -1,5 +1,3 @@
-// Package model sets up the database
-// and defines functions that interact with the db
 package model
 
 import (
