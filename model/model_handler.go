@@ -34,7 +34,19 @@ func addSite() {
 	fmt.Printf("Successfully added {%s}\n", newSite.Name)
 }
 
-func updateSite() {}
+func updateSite() {
+    var site Site
+
+    siteName := getInput("Site to update")
+    db.Where("name = ?", siteName).First(&site)
+    fmt.Println("\nEditing: ", site.Name)
+    fmt.Printf("Old details\nSiteName: {%s}  UserName {%s}  Password {%s}\n", site.Name, site.UserName, site.Password)
+    site.Name = getInput("New site name")
+    site.UserName = getInput("New userName")
+    site.Password = getInput("New Password")
+    db.Save(&site)
+    fmt.Println("Updated Successfully")
+}
 func deleteSite() {}
 
 // SearchSite searches for a siteName that matches the users input
@@ -77,7 +89,7 @@ func TinyGo() {
 	case "d":
 		fmt.Println("chose d")
 	case "u":
-		fmt.Println("chose u")
+        updateSite()
 	case "l":
 		listAll()
 	default:
