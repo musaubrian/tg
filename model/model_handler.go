@@ -31,15 +31,22 @@ func addSite() {
     newSite.UserName = getInput("Site's Username")
     newSite.Password = getInput("Site's Password")
     db.Create(&newSite)
+    fmt.Printf("Successfully added {%s}\n", newSite.Name)
 }
 
 func updateSite(){}
-func DeleteSite(){}
-func SearchSite(){}
+func deleteSite(){}
+func searchSite(){
+    var site Site
+    fmt.Println("//Searching")
+    site.Name = getInput("Site name?")
+    result := db.Where("name = ?", site.Name).First(&site)
+    fmt.Println(result) // | TODO:: get the actual value not its memory address
+}
 func listAll(){
     var sites []Site
     result := db.Find(&sites)
-    fmt.Println(result)
+    fmt.Println(result) // | TODO:: get the actual value not its memory address
 }
 
 
@@ -51,7 +58,7 @@ func listAll(){
     case "a":
         addSite()
     case "s":
-        fmt.Println("chose s")
+        searchSite()
     case "d":
         fmt.Println("chose d")
     case "u":
