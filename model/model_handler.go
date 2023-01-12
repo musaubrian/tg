@@ -1,9 +1,10 @@
-//Package model sets up the database
+// Package model sets up the database
 // and defines functions that interact with the db
 package model
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -46,13 +47,15 @@ func searchSite(){
 func listAll(){
     var sites []Site
     result := db.Find(&sites)
-    fmt.Println(result) // | TODO:: get the actual value not its memory address
+    a, _ := json.Marshal(result)
+
+    fmt.Println(a)
 }
 
 
  // Start of user interaction
  func TinyGo(){
-    fmt.Println("\n// Add[a] | Search[s] | Update[u] | Delete[d]\n")
+    fmt.Println("\n// Add[a] | Search[s] | Update[u] | Delete[d] | List all[l]\n")
     startingPoint := getInput("What shall it be?")
     switch startingPoint {
     case "a":
@@ -63,6 +66,8 @@ func listAll(){
         fmt.Println("chose d")
     case "u":
         fmt.Println("chose u")
+    case "l":
+        listAll()
     default:
         fmt.Println("that option doesn't exist", startingPoint)
     }

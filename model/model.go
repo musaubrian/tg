@@ -17,10 +17,10 @@ var db *gorm.DB
 // Site defines the structure of the db
 type Site struct {
     gorm.Model
-    ID uint64
-    Name string
-    UserName string
-    Password string
+    ID uint64 `json:"id" gorm:"not null prinmaryKey"`
+    Name string `json:"name" gorm:"not null`
+    UserName string `json:"userName" gorm:"not null"`
+    Password string `json:"password" gorm:"not null"`
 }
 
 // SetupDb creates a connection to the db
