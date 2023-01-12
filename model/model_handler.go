@@ -44,16 +44,22 @@ func searchSite(){
     if result.RowsAffected == 0 {
         fmt.Println("No site found matching", name)
     } else {
-        fmt.Println("\nName:", site.Name)
+        fmt.Println("\nSiteName:", site.Name)
         fmt.Println("Username:", site.UserName)
         fmt.Println("Password:", site.Password)
     }
 
 }
+
+// Lists all the records in the db
 func listAll(){
     var sites []Site
-    _ = db.Find(&sites)
-    
+    db.Find(&sites)
+    for _, site := range sites {
+        fmt.Println("\nSiteName: ", site.Name)
+        fmt.Println("UserName: ", site.UserName)
+        fmt.Println("Password: ", site.Password)
+    }    
 }
 
 
