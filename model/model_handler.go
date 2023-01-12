@@ -39,13 +39,20 @@ func deleteSite(){}
 func searchSite(){
     var site Site
     fmt.Println("//Searching")
-    site.Name = getInput("Site name?")
-    result := db.Where("name = ?", site.Name).First(&site)
-    fmt.Println(result) // | TODO:: get the actual value not its memory address
+    name := getInput("Site name?")
+    result := db.Where("name = ?", name).First(&site)
+    if result.RowsAffected == 0 {
+        fmt.Println("No site found matching", name)
+    } else {
+        fmt.Println("\nName:", site.Name)
+        fmt.Println("Username:", site.UserName)
+        fmt.Println("Password:", site.Password)
+    }
+
 }
 func listAll(){
     var sites []Site
-    _ := db.Find(&sites)
+    _ = db.Find(&sites)
     
 }
 
