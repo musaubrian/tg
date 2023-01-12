@@ -1,6 +1,7 @@
 package model
 
 import (
+	"fmt"
 	"log"
 
 	"gorm.io/driver/sqlite"
@@ -8,14 +9,14 @@ import (
 )
 
 // db is an instance of a Gorm db
-var db *gorm.DB
+//var db *gorm.DB
 
 // Site defines the structure of the db
 type Site struct {
-	ID       uint64 `json:"id" gorm:"primaryKey`
-	Name     string `json:"name" gorm:"not null"`
-	UserName string `json:"user_name", gorm:"not null"`
-	Password string `json:"password", gorm:"not null"` // TODO Should probably find a way to encrypt this
+    ID       uint64 `gorm:"primaryKey not null`
+    Name     string `gorm:"not null"`
+    UserName string `gorm:"not null"`
+    Password string `gorm:"not null"`
 }
 
 // SetupDb creates a connection to the db
@@ -23,14 +24,15 @@ type Site struct {
 func SetupDb() {
 	var err error
 
-	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config)
+	db, err := gorm.Open(sqlite.Open("./db/test.db"), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Could not open db", err)
+        log.Fatal("Could not open db: ", err)
 		panic(err)
 	}
 
 	err = db.AutoMigrate(&Site{})
 	if err != nil {
-		log.Fatal("Could not setup tables and stuff:", err)
+		log.Fatal("Could not setup tables and stuff: ", err)
 	}
+    fmt.Println("Setup database succesfully")
 }
