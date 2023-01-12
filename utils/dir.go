@@ -4,6 +4,8 @@ import (
 	"os"
 )
 
+// Creates the 'db/' directory
+// Skippes it if the directory exist
 func CreateDir() error {
     _, err := os.Stat("db")
     if os.IsNotExist(err) {
