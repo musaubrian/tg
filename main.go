@@ -12,5 +12,5 @@ func main() {
 	}
 
 	model.SetupDb()
-    model.TinyGo()
+	model.TinyGo()
 }

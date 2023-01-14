@@ -26,11 +26,11 @@ func getInput(prompt string) string {
 func AddSite() {
 	var newSite Site
 
-    fmt.Println("\n// Adding record")
-    newSite.Name = getInput("Site's name")
-    newSite.UserName = getInput("Username")
-    newSite.Password = getInput("Password")
-    db.Create(&newSite)
+	fmt.Println("\n// Adding record")
+	newSite.Name = getInput("Site's name")
+	newSite.UserName = getInput("Username")
+	newSite.Password = getInput("Password")
+	db.Create(&newSite)
 	fmt.Printf("\nSuccessfully added {%s}\n", newSite.Name)
 }
 
@@ -38,11 +38,11 @@ func AddSite() {
 func UpdateSite() {
 	var site Site
 
-    fmt.Println("\n// Updating record")
-    sitename := getInput("Site to Update")
-    db.Where("name = ?", sitename).First(&site)
+	fmt.Println("\n// Updating record")
+	sitename := getInput("Site to Update")
+	db.Where("name = ?", sitename).First(&site)
 
-    fmt.Printf("Old details\nSiteName: {%s}  UserName: {%s}  Password: {%s}\n", site.Name, site.UserName, site.Password)
+	fmt.Printf("Old details\nSiteName: {%s}  UserName: {%s}  Password: {%s}\n", site.Name, site.UserName, site.Password)
 	site.Name = getInput("New site name")
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")
@@ -54,7 +54,7 @@ func UpdateSite() {
 func DeleteSite() {
 	var site Site
 
-    sitename := getInput("Site to delete")
+	sitename := getInput("Site to delete")
 	db.Where("name = ?", sitename).Delete(&site)
 	fmt.Printf("\nDeleted {%s} successfully\n", sitename)
 }
@@ -63,7 +63,7 @@ func DeleteSite() {
 func SearchSite() {
 	var site Site
 
-    sitename := getInput("Site to search for")
+	sitename := getInput("Site to search for")
 	fmt.Println("\n//Searching for", sitename)
 	result := db.Where("name = ?", sitename).First(&site)
 	if result.RowsAffected == 0 {
@@ -89,8 +89,8 @@ func ListAll() {
 
 // Start of user interaction
 func TinyGo() {
-    fmt.Println("\nTinyGo\nAdd[a] | Update[u] | Search[s] | Delete[d] | ListAll[l]\n")
-    choice := getInput("What shall it be?")
+	fmt.Println("\nTinyGo\nAdd[a] | Update[u] | Search[s] | Delete[d] | ListAll[l]\n")
+	choice := getInput("What shall it be?")
 	switch choice {
 	case "a":
 		AddSite()
