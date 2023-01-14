@@ -22,17 +22,18 @@ func getInput(prompt string) string {
 	return result
 }
 
-// adds a new site's details to the db
-func addSite() {
+// Adds a new site's details to the db
+func AddSite() {
 	var newSite Site
 	newSite.Name = getInput("Site Name")
 	newSite.UserName = getInput("Site's Username")
 	newSite.Password = getInput("Site's Password")
 	db.Create(&newSite)
-	fmt.Printf("Successfully added {%s}\n", newSite.Name)
+	fmt.Printf("\nSuccessfully added {%s}\n", newSite.Name)
 }
 
-func updateSite() {
+// Updates the contents of a specified site
+func UpdateSite() {
 	var site Site
 
 	siteName := getInput("Site to update")
@@ -43,13 +44,19 @@ func updateSite() {
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")
 	db.Save(&site)
-	fmt.Println("Updated Successfully")
+	fmt.Println("\nUpdated Successfully")
 }
-func deleteSite() {}
+
+// Delete records associated with a site
+func DeleteSite() {
+    var site Site
+    siteName := getInput("Site to delete")
+    db.Where("name = ?", siteName).Delete(&site)
+    fmt.Printf("\nDeleted {%s} successfully\n", siteName)
+}
 
 // SearchSite searches for a siteName that matches the users input
-// Displays the record
-func searchSite() {
+func SearchSite() {
 	var site Site
 	fmt.Println("//Searching")
 	name := getInput("Site name?")
@@ -65,7 +72,7 @@ func searchSite() {
 }
 
 // Lists all the records in the db
-func listAll() {
+func ListAll() {
 	var sites []Site
 	db.Find(&sites)
 	for _, site := range sites {
@@ -81,15 +88,15 @@ func TinyGo() {
 	startingPoint := getInput("What shall it be?")
 	switch startingPoint {
 	case "a":
-		addSite()
+		AddSite()
 	case "s":
-		searchSite()
+		SearchSite()
 	case "d":
-		fmt.Println("chose d")
+        DeleteSite()
 	case "u":
-		updateSite()
+		UpdateSite()
 	case "l":
-		listAll()
+		ListAll()
 	default:
 		fmt.Println("that option doesn't exist", startingPoint)
 	}
