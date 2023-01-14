@@ -4,8 +4,13 @@ import (
 	"github.com/rivo/tview"
 )
 
+
+var form *tview.Form
+var app *tview.Application
+
 func Tui() {
-	app = tview.NewApplication()
+    app = tview.NewApplication().EnableMouse(true)
+    form = tview.NewForm()
 	list := tview.NewList().
 		AddItem("Add", "", 'a', func() {
 			AddSiteOption()

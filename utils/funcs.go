@@ -6,9 +6,6 @@ import (
 	"github.com/rivo/tview"
 )
 
-var form *tview.Form
-var app *tview.Application
-
 func AddSiteOption() {
 	form.AddInputField("Enter site name", "", 20, nil, nil).
 		SetLabelColor(tview.Styles.PrimaryTextColor).
