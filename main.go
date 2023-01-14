@@ -12,7 +12,7 @@ func main() {
 	if err != nil {
 		log.Fatal("Error creating dir: ", err)
 	}
-//    utils.BoxTui()
+
 	model.SetupDb()
-	model.TinyGo()
+	utils.Tui()
 }

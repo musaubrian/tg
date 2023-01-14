@@ -15,7 +15,7 @@ var db *gorm.DB
 
 // Site defines the structure of the db
 type Site struct {
-	ID      int32
+	ID       int32
 	Name     string
 	UserName string
 	Password string
