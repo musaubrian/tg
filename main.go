@@ -4,15 +4,13 @@ import (
 	"log"
 
 	"github.com/musaubrian/tinygo/model"
-	"github.com/musaubrian/tinygo/utils"
 )
 
 func main() {
-	err := utils.CreateDir()
-	if err != nil {
-		log.Fatal("Error creating dir: ", err)
+	if err := CreateDir(); err != nil {
+		log.Fatal("Could not create directory", err)
 	}
 
 	model.SetupDb()
-	utils.Tui()
+    model.TinyGo()
 }
