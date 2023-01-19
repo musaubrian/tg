@@ -11,7 +11,7 @@ import "github.com/musaubrian/tinygo"
 - [func CreateDir() error](<#func-createdir>)
 
 
-## func [CreateDir](<https://github.com/musaubrian/tinygo/blob/main/dir.go#L7>)
+## func [CreateDir](<https://github.com/musaubrian/tinygo/blob/main/dir.go#L11>)
 
 ```go
 func CreateDir() error
@@ -31,6 +31,7 @@ Package model sets up the database and defines functions that interact with the 
 
 - [func AddSite()](<#func-addsite>)
 - [func DeleteSite()](<#func-deletesite>)
+- [func GetPath() string](<#func-getpath>)
 - [func ListAll()](<#func-listall>)
 - [func SearchSite()](<#func-searchsite>)
 - [func SetupDb()](<#func-setupdb>)
@@ -39,7 +40,7 @@ Package model sets up the database and defines functions that interact with the 
 - [type Site](<#type-site>)
 
 
-## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L26>)
+## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L39>)
 
 ```go
 func AddSite()
@@ -47,7 +48,7 @@ func AddSite()
 
 Adds a new site's details to the db
 
-## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L54>)
+## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L67>)
 
 ```go
 func DeleteSite()
@@ -55,7 +56,15 @@ func DeleteSite()
 
 Delete records associated with a site
 
-## func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L80>)
+## func [GetPath](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L13>)
+
+```go
+func GetPath() string
+```
+
+Get full path to homeDir
+
+## func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L93>)
 
 ```go
 func ListAll()
@@ -63,7 +72,7 @@ func ListAll()
 
 Lists all the records in the db
 
-## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L63>)
+## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L76>)
 
 ```go
 func SearchSite()
@@ -71,7 +80,7 @@ func SearchSite()
 
 SearchSite searches for a siteName that matches the users input
 
-## func [SetupDb](<https://github.com/musaubrian/tinygo/blob/main/model/model.go#L26>)
+## func [SetupDb](<https://github.com/musaubrian/tinygo/blob/main/model/model.go#L27>)
 
 ```go
 func SetupDb()
@@ -79,7 +88,7 @@ func SetupDb()
 
 SetupDb creates a connection to the db and initializes the table and columns
 
-## func [TinyGo](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L91>)
+## func [TinyGo](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L104>)
 
 ```go
 func TinyGo()
@@ -87,7 +96,7 @@ func TinyGo()
 
 Start of user interaction
 
-## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L38>)
+## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L51>)
 
 ```go
 func UpdateSite()
@@ -95,7 +104,7 @@ func UpdateSite()
 
 Updates the contents of a specified site
 
-## type [Site](<https://github.com/musaubrian/tinygo/blob/main/model/model.go#L17-L22>)
+## type [Site](<https://github.com/musaubrian/tinygo/blob/main/model/model.go#L18-L23>)
 
 Site defines the structure of the db
 
