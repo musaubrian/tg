@@ -5,20 +5,20 @@ import (
 	"fmt"
 	"log"
 	"os"
-    "path"
+	"path"
 	"strings"
 )
 
 // Get full path to homeDir
 func GetPath() string {
-    
-    homeDir, err := os.UserHomeDir()
-    if err != nil{
-        log.Fatal(err)
-    }
-    fullPath := path.Join(homeDir, ".db")
 
-    return fullPath
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fullPath := path.Join(homeDir, ".db")
+
+	return fullPath
 }
 
 // get input from the user
@@ -102,7 +102,7 @@ func ListAll() {
 
 // Start of user interaction
 func TinyGo() {
-	fmt.Println("\nTinyGo\nAdd[a] | Update[u] | Search[s] | Delete[d] | ListAll[l]\n")
+	fmt.Println("\nTinyGo\nAdd[a] | Update[u] | Search[s] | Delete[d] | ListAll[l]")
 	choice := getInput("What shall it be?")
 	switch choice {
 	case "a":
