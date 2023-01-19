@@ -5,8 +5,21 @@ import (
 	"fmt"
 	"log"
 	"os"
+    "path"
 	"strings"
 )
+
+// Get full path to homeDir
+func GetPath() string {
+    
+    homeDir, err := os.UserHomeDir()
+    if err != nil{
+        log.Fatal(err)
+    }
+    fullPath := path.Join(homeDir, ".db")
+
+    return fullPath
+}
 
 // get input from the user
 func getInput(prompt string) string {

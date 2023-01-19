@@ -1,13 +1,19 @@
 package main
 
-import "os"
+import (
+	"os"
+
+	"github.com/musaubrian/tinygo/model"
+)
 
 // Creates the 'db/' directory
 // Skippes it if the directory exist
 func CreateDir() error {
-	_, err := os.Stat("db")
+    fullPath := model.GetPath()
+
+    _, err := os.Stat(fullPath)
 	if os.IsNotExist(err) {
-		err := os.Mkdir("./db", os.ModePerm)
+		err := os.Mkdir(fullPath, os.ModePerm)
 		if err != nil {
 			return err
 		}

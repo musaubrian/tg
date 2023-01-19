@@ -4,6 +4,7 @@ package model
 
 import (
 	"log"
+	"path"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -26,7 +27,11 @@ type Site struct {
 func SetupDb() {
 	var err error
 
-	db, err = gorm.Open(sqlite.Open("./db/tinygo.db"), &gorm.Config{})
+    homePath := GetPath()
+    fullPath := path.Join(homePath, "tinygo.db")
+    
+
+	db, err = gorm.Open(sqlite.Open(fullPath), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Could not open db: ", err)
 		panic(err)
