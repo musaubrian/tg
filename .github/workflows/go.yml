@@ -1,25 +1,28 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
-name: Go
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+name: auto-format
+on: push
 jobs:
-
-  build:
+  format:
+    # Check if the PR is not from a fork
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: gofmt
+        run: gofmt -w ./..
 
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.19
+      - name: Check for modified files
+        id: git-check
+        run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> $GITHUB_OUTPUT
 
-    - name: Test
-      run: go test -v ./...
+      - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'Ernest'
+          git config --global user.email 'musaubrian@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.G_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "chore: format changes"
+          git push
+
