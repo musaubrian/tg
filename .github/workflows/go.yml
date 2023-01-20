@@ -25,4 +25,3 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.G_TOKEN }}@github.com/${{ github.repository }}
           git commit -am "chore: format changes"
           git push
-
