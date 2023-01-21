@@ -11,13 +11,13 @@ import (
 )
 
 // db defines a gorm instance
-// [Gorm] https://gorm.io
+// https://gorm.io
 var db *gorm.DB
 
 // Site defines the structure of the db
 type Site struct {
-	ID       int32
-	Name     string
+	ID      int32
+	Name      string
 	UserName string
 	Password string
 }

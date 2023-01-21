@@ -55,7 +55,7 @@ func UpdateSite() {
 	sitename := getInput("Site to Update")
 	db.Where("name = ?", sitename).First(&site)
 
-	fmt.Printf("Old details\nSiteName: {%s}  UserName: {%s}  Password: {%s}\n", site.Name, site.UserName, site.Password)
+	fmt.Printf("Old details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n", site.Name, site.UserName, site.Password)
 	site.Name = getInput("New site name")
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")
@@ -102,7 +102,14 @@ func ListAll() {
 
 // Start of user interaction
 func TinyGo() {
-	fmt.Println("\nTinyGo\nAdd[a] | Update[u] | Search[s] | Delete[d] | ListAll[l]")
+	fmt.Println(`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                           TinyGo
+
+    Add[a] | Update[u] | Search[s] | Delete[d] | ListAll[l]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    `)
 	choice := getInput("What shall it be?")
 	switch choice {
 	case "a":
