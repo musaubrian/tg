@@ -1,10 +1,8 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+# Formats code on push
 name: auto-format
 on: push
 jobs:
   format:
-    # Check if the PR is not from a fork
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,5 +21,5 @@ jobs:
           git config --global user.name 'Ernest'
           git config --global user.email 'musaubrian@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "chore: format changes"
+          git commit -am "chore(format): format code using gofmt"
           git push
