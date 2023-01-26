@@ -55,12 +55,12 @@ func UpdateSite() {
 	sitename := getInput("Site to Update")
 	db.Where("name = ?", sitename).First(&site)
 
-	fmt.Printf("Old details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n", site.Name, site.UserName, site.Password)
+	fmt.Printf("\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n\n", site.Name, site.UserName, site.Password)
 	site.Name = getInput("New site name")
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")
 	db.Save(&site)
-	fmt.Printf("\nUpdated {%s}", site.Name)
+	fmt.Printf("\nUpdated {%s}\n\n", site.Name)
 }
 
 // Delete records associated with a site
@@ -84,9 +84,8 @@ func SearchSite() {
 	} else {
 		fmt.Println("\nSiteName:", site.Name)
 		fmt.Println("Username:", site.UserName)
-		fmt.Printf("Password: %s\n\n", site.Password)
+		fmt.Printf("Password: %s\n", site.Password)
 	}
-
 }
 
 // Lists all the records in the db
