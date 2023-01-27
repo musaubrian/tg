@@ -1,16 +1,17 @@
 package main
 
 import (
-	"log"
+//	"log"
 
-	"github.com/musaubrian/tinygo/model"
+//	"github.com/musaubrian/tinygo/model"
 )
 
 func main() {
-	if err := CreateDir(); err != nil {
-		log.Fatal("Could not create directory", err)
-	}
+//if err := CreateDir(); err != nil {
+//	log.Fatal("Could not create directory", err)
+//}
 
-	model.SetupDb()
-	model.TinyGo()
+//model.SetupDb()
+//model.TinyGo()
+    CopyToClipboard()
 }
