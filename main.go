@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-//if err := CreateDir(); err != nil {
-//	log.Fatal("Could not create directory", err)
-//}
+	//if err := CreateDir(); err != nil {
+	//	log.Fatal("Could not create directory", err)
+	//}
 
-//model.SetupDb()
-//model.TinyGo()
-    CopyToClipboard()
+	//model.SetupDb()
+	//model.TinyGo()
+	CopyToClipboard()
 }
