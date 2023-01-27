@@ -21,7 +21,7 @@ func GetPath() string {
 	return fullPath
 }
 
-// get input from the user
+// Get input from the user
 func getInput(prompt string) string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Printf("$ %s: ", prompt)
@@ -55,7 +55,9 @@ func UpdateSite() {
 	sitename := getInput("Site to Update")
 	db.Where("name = ?", sitename).First(&site)
 
-	fmt.Printf("\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n\n", site.Name, site.UserName, site.Password)
+	fmt.Printf(
+		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n\n",
+		site.Name, site.UserName, site.Password)
 	site.Name = getInput("New site name")
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")

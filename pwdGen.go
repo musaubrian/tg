@@ -3,15 +3,14 @@ package main
 import (
 	"crypto/rand"
 	"fmt"
-	"log"
-
-	"github.com/f1bonacc1/glippy"
 )
 
 // Returns a random 15 character string from the collection
-func generatePassword() string {
+func GeneratePassword() string {
 
-	var collection = []byte("0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM")
+	var collection = []byte(
+		"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM")
+
 	pwdLength := 15
 	pwd := make([]byte, pwdLength)
 	rand.Read(pwd)
@@ -23,13 +22,9 @@ func generatePassword() string {
 	return string(pwd)
 }
 
+// TODO:: find how to implement
 // Copies generated string to clipboard
 func CopyToClipboard() {
-	text := generatePassword()
-	err := glippy.Set(text)
-	if err != nil {
-		log.Fatal("Could not copy to clipboard", err)
-	}
 	fmt.Println(`
     *************************
        copied to clipboard
