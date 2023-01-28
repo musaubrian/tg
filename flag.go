@@ -8,24 +8,39 @@ import (
 	"github.com/musaubrian/tinygo/model"
 )
 
-// TODO:: raise error when no flag is parsed
 // Set flag for when to only generate passwords
-// or just us the db
+// use the db or display the help message
 func CheckFlag() {
 
 	useGenerator := flag.Bool("p", false, "Generate password")
 	useDb := flag.Bool("d", false, "Access records")
+    help := flag.Bool("h", false, "Display usage instructions")
 	flag.Parse()
 
-	if *useGenerator {
-		text := GeneratePassword()
-		fmt.Printf("\n%s\n", text)
-	}
-	if *useDb {
-		if err := CreateDir(); err != nil {
-			log.Fatal("Could not create directory", err)
-		}
-		model.SetupDb()
-		model.TinyGo()
-	}
+    switch {
+    case *useGenerator:
+        text := GeneratePassword()
+        fmt.Printf("\n%s\n", text)
+    case *useDb:
+        if err := CreateDir(); err != nil {
+            log.Fatal("Could not create directory", err)}
+
+
+        model.SetupDb()
+        model.TinyGo()
+    case *help:
+        usageInstructions()
+    default:
+        usageInstructions()
+    }
+}
+
+// Print usage instructions
+func usageInstructions()  {
+    fmt.Println(`
+Usage of tinygo:
+    -d  Access records
+    -h  Display usage instructions
+    -p  Generate passwords
+    `)
 }
