@@ -24,4 +24,8 @@ git clone https://github.com/musuabrian/tinygo
 cd tinygo
 go build .
 ```
-> Find the docs [here](./docs/docs.md)
+
+## Usage
+![demo gif](./demo.gif)
+
+> ## Find the docs [here](./docs/docs.md)
