@@ -8,8 +8,29 @@ import "github.com/musaubrian/tinygo"
 
 ## Index
 
+- [func CheckFlag()](<#func-checkflag>)
+- [func CopyToClipboard()](<#func-copytoclipboard>)
 - [func CreateDir() error](<#func-createdir>)
+- [func GeneratePassword() string](<#func-generatepassword>)
 
+
+## func [CheckFlag](<https://github.com/musaubrian/tinygo/blob/main/flag.go#L13>)
+
+```go
+func CheckFlag()
+```
+
+Set flag for when to only generate passwords use the db or display the help message
+
+## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/pwdGen.go#L28>)
+
+```go
+func CopyToClipboard()
+```
+
+TODO:: find how to implement
+
+Copies generated string to clipboard
 
 ## func [CreateDir](<https://github.com/musaubrian/tinygo/blob/main/dir.go#L11>)
 
@@ -18,6 +39,14 @@ func CreateDir() error
 ```
 
 Creates the 'db/' directory Skippes it if the directory exist
+
+## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/pwdGen.go#L9>)
+
+```go
+func GeneratePassword() string
+```
+
+Returns a random 15 character string from the collection
 
 # model
 
@@ -48,7 +77,7 @@ func AddSite()
 
 Adds a new site's details to the db
 
-## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L67>)
+## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L69>)
 
 ```go
 func DeleteSite()
@@ -64,7 +93,7 @@ func GetPath() string
 
 Get full path to homeDir
 
-## func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L93>)
+## func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L94>)
 
 ```go
 func ListAll()
@@ -72,7 +101,7 @@ func ListAll()
 
 Lists all the records in the db
 
-## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L76>)
+## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L78>)
 
 ```go
 func SearchSite()
@@ -88,7 +117,7 @@ func SetupDb()
 
 SetupDb creates a connection to the db and initializes the table and columns
 
-## func [TinyGo](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L104>)
+## func [TinyGo](<https://github.com/musaubrian/tinygo/blob/main/model/model_handler.go#L105>)
 
 ```go
 func TinyGo()

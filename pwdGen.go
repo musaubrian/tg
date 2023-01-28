@@ -23,6 +23,7 @@ func GeneratePassword() string {
 }
 
 // TODO:: find how to implement
+//
 // Copies generated string to clipboard
 func CopyToClipboard() {
 	fmt.Println(`
