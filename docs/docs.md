@@ -38,7 +38,7 @@ Copies generated string to clipboard
 func CreateDir() error
 ```
 
-Creates the 'db/' directory Skippes it if the directory exist
+Creates the 'db/' directory Skips it if the directory exist
 
 ## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/pwdGen.go#L9>)
 

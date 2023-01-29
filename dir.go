@@ -7,7 +7,7 @@ import (
 )
 
 // Creates the 'db/' directory
-// Skippes it if the directory exist
+// Skips it if the directory exist
 func CreateDir() error {
 	fullPath := model.GetPath()
 
