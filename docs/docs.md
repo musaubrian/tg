@@ -22,7 +22,7 @@ func CheckFlag()
 
 Set flag for when to only generate passwords use the db or display the help message
 
-## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/pwdGen.go#L28>)
+## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/pwdGen.go#L29>)
 
 ```go
 func CopyToClipboard()

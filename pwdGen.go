@@ -9,7 +9,8 @@ import (
 func GeneratePassword() string {
 
 	var collection = []byte(
-		"0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM")
+		`0123456789qwertyuiopasdfghjklzxcvbnm
+        QWERTYUIOPASDFGHJKLZXCVBNM~!@#$%^&*(()-?/`)
 
 	pwdLength := 15
 	pwd := make([]byte, pwdLength)
