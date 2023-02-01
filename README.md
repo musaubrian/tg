@@ -28,4 +28,6 @@ go build .
 ## Usage
 ![demo gif](./demo.gif)
 
+## Contributions are welcomed
+
 > ## Find the docs [here](./docs/docs.md)
