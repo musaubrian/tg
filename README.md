@@ -1,5 +1,7 @@
 # TinyGo
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/musaubrian/tinygo.svg)](https://pkg.go.dev/github.com/musaubrian/tinygo)
+
  > A cli tool to help manage your passwords
 
 It is a **Go** version of [tinyDb](https://github.com/musaubrian/tinydb)
