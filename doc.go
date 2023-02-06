@@ -8,7 +8,7 @@ Go port of tinyDb -> https://github.com/musaubrian/tinydb
 
 If you have go installed simply run
 
-```sh 
+```sh
 go install github.com/musaubrian/tinygo@latest
 ```
 
