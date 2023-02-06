@@ -8,19 +8,26 @@ import "github.com/musaubrian/tinygo"
 
 Cli tool to help manage your passwords
 
-Go port of tinyDb \-\> https://github.com/musaubrian/tinydb
+Go port of tinyDb -> https://github.com/musaubrian/tinydb
 
-\#\# Installation
+## Installation
 
-### If you have go installed simply run
+If you have go installed simply run
 
-\`\`\`sh go install github.com/musaubrian/tinygo@latest \`\`\`
+```sh
+
+go install github.com/musaubrian/tinygo@latest
+```
 
 or
 
-\`\`\`sh
+```sh
 
-git clone https://github.com/musuabrian/tinygo cd tinygo go build . \`\`\`
+git clone https://github.com/musuabrian/tinygo
+
+cd tinygo
+go build .
+```
 
 ## Index
 
