@@ -62,13 +62,13 @@ func UpdateSite() {
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")
 	db.Save(&site)
-	fmt.Printf("\nUpdated {%s}\n\n", site.Name)
+	fmt.Printf("\nUpdated to {%s}\n\n", site.Name)
 }
 
 // Delete records associated with a site
 func DeleteSite() {
 	var site Site
-
+	fmt.Println("\n// Deleting record")
 	sitename := getInput("Site to delete")
 	db.Where("name = ?", sitename).Delete(&site)
 	fmt.Printf("\nDeleted {%s} successfully\n", sitename)
@@ -78,6 +78,7 @@ func DeleteSite() {
 func SearchSite() {
 	var site Site
 
+	fmt.Println("\n// Searching for record")
 	sitename := getInput("Site to search for")
 	fmt.Println("\n//Searching for", sitename)
 	result := db.Where("name = ?", sitename).First(&site)
@@ -94,6 +95,7 @@ func SearchSite() {
 func ListAll() {
 	var sites []Site
 	db.Find(&sites)
+	fmt.Println("\n// Listing all records")
 	for _, site := range sites {
 		fmt.Println("\nSiteName: ", site.Name)
 		fmt.Println("UserName: ", site.UserName)
