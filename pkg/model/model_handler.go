@@ -78,7 +78,7 @@ func DeleteSite() {
 func SearchSite() {
 	var site Site
 
-    fmt.Println("\n// Searching for record")
+	fmt.Println("\n// Searching for record")
 	sitename := getInput("Site to search for")
 	fmt.Println("\n//Searching for", sitename)
 	result := db.Where("name = ?", sitename).First(&site)
@@ -95,7 +95,7 @@ func SearchSite() {
 func ListAll() {
 	var sites []Site
 	db.Find(&sites)
-    fmt.Println("\n// Listing all records")
+	fmt.Println("\n// Listing all records")
 	for _, site := range sites {
 		fmt.Println("\nSiteName: ", site.Name)
 		fmt.Println("UserName: ", site.UserName)
