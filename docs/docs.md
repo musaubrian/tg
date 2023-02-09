@@ -31,8 +31,8 @@ import "github.com/musaubrian/tinygo/cmd"
 func Execute()
 ```
 
-Execute adds all child commands to the root command and sets flags appropriately.
-This is called by main.main(). It only needs to happen once to the rootCmd.
+Execute adds all child commands to the root command and sets flags appropriately. This is called by main.main().
+It only needs to happen once to the rootCmd.
 
 # model
 
@@ -50,7 +50,6 @@ Package model sets up the database and defines functions that interact with the 
 - [func ListAll()](<#func-listall>)
 - [func SearchSite()](<#func-searchsite>)
 - [func SetupDb()](<#func-setupdb>)
-- [func TinyGo()](<#func-tinygo>)
 - [func UpdateSite()](<#func-updatesite>)
 - [type Site](<#type-site>)
 
@@ -103,14 +102,6 @@ func SetupDb()
 
 SetupDb creates a connection to the db and initializes the table and columns
 
-## func [TinyGo](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L107>)
-
-```go
-func TinyGo()
-```
-
-Start of user interaction
-
 ## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L51>)
 
 ```go
@@ -147,7 +138,7 @@ Package utils defines helper functions
 - [func GeneratePassword() string](<#func-generatepassword>)
 
 
-## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/pwdGen.go#L27>)
+## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/pwdGen.go#L26>)
 
 ```go
 func CopyToClipboard()
@@ -165,7 +156,7 @@ func CreateDir() error
 
 Creates the 'db/' directory Skips it if the directory exist
 
-## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/pwdGen.go#L9>)
+## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/pwdGen.go#L8>)
 
 ```go
 func GeneratePassword() string
