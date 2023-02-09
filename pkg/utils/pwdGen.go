@@ -2,7 +2,6 @@ package utils
 
 import (
 	"crypto/rand"
-	"fmt"
 )
 
 // Returns a random 15 character string from the collection
