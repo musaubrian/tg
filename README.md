@@ -12,7 +12,7 @@ and i actually used a db(**sqlite**) instead of a json file.
 ## Installation
 
 
-> **Building from source is \*always better**
+> **Building from source builds character**
 
 
 If you have go installed simply run
@@ -27,9 +27,6 @@ cd tinygo
 go build .
 ```
 
-## Usage
-![demo gif](./demo.gif)
-
-## Contributions are welcomed
+Contributions are welcomed
 
 > ## Find the docs [here](./docs/docs.md)

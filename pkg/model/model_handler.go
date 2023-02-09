@@ -102,30 +102,3 @@ func ListAll() {
 		fmt.Println("Password: ", site.Password)
 	}
 }
-
-// Start of user interaction
-func TinyGo() {
-	fmt.Println(`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                           TinyGo
-
-    Add[a] | Update[u] | Search[s] | Delete[d] | ListAll[l]
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    `)
-	choice := getInput("What shall it be?")
-	switch choice {
-	case "a":
-		AddSite()
-	case "s":
-		SearchSite()
-	case "d":
-		DeleteSite()
-	case "u":
-		UpdateSite()
-	case "l":
-		ListAll()
-	default:
-		fmt.Printf("Option [%s] doesn't exist\n", choice)
-	}
-}
