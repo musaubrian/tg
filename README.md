@@ -4,7 +4,7 @@
 
  > A cli tool to help manage your passwords
 
-It is a **Go** version of [tinyDb](https://github.com/musaubrian/tinydb)
+It is a **Go** version of [tinyDb][https://github.com/musaubrian/tinydb)
 
 Decided to re-write it in Go to learn how to work with
 and i actually used a db(**sqlite**) instead of a json file.
@@ -12,7 +12,7 @@ and i actually used a db(**sqlite**) instead of a json file.
 ## Installation
 
 
-> **Building from source is \*always better**
+> **Building from source builds character**
 
 
 If you have go installed simply run
@@ -27,9 +27,6 @@ cd tinygo
 go build .
 ```
 
-## Usage
-![demo gif](./demo.gif)
+Contributions are welcomed
 
-## Contributions are welcomed
-
-> ## Find the docs [here](./docs/docs.md)
+> ## Find the docs [here][./docs/docs.md)

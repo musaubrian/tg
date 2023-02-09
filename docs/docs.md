@@ -6,23 +6,9 @@
 import "github.com/musaubrian/tinygo"
 ```
 
-### Cli tool to help manage your passwords
+### Copyright © 2023 Ernest
 
-Go port of tinyDb \-\> https://github.com/musaubrian/tinydb
-
-\#\# Installation
-
-\# If you have go installed simply run
-
-\`\`\`sh go install github.com/musaubrian/tinygo@latest \`\`\`
-
-or
-
-\`\`\`sh
-
-git clone https://github.com/musuabrian/tinygo cd tinygo go build . \`\`\`
-
-Copyright © 2023 Ernest
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Index
 
@@ -34,32 +20,19 @@ Copyright © 2023 Ernest
 import "github.com/musaubrian/tinygo/cmd"
 ```
 
-### Copyright © 2023 Ernest
-
-Copyright © 2023 Ernest
-
-Copyright © 2023 Ernest
-
-Copyright © 2023 Ernest
-
-Copyright © 2023 Ernest
-
-Copyright © 2023 Ernest
-
-Copyright © 2023 Ernest
-
 ## Index
 
 - [func Execute()](<#func-execute>)
 
 
-## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L29>)
+## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L26>)
 
 ```go
 func Execute()
 ```
 
-Execute adds all child commands to the root command and sets flags appropriately. This is called by main.main\(\). It only needs to happen once to the rootCmd.
+Execute adds all child commands to the root command and sets flags appropriately.
+This is called by main.main(). It only needs to happen once to the rootCmd.
 
 # model
 
@@ -106,7 +79,7 @@ func GetPath() string
 
 Get full path to homeDir
 
-## func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L94>)
+## func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L95>)
 
 ```go
 func ListAll()
@@ -130,7 +103,7 @@ func SetupDb()
 
 SetupDb creates a connection to the db and initializes the table and columns
 
-## func [TinyGo](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L105>)
+## func [TinyGo](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L107>)
 
 ```go
 func TinyGo()
@@ -180,7 +153,7 @@ Package utils defines helper functions
 func CopyToClipboard()
 ```
 
-TODO:: find how to implement
+TODO:: find how to implement without Xclip or Xcel
 
 Copies generated string to clipboard
 

@@ -21,12 +21,7 @@ func GeneratePassword() string {
 	return string(pwd)
 }
 
-// TODO:: find how to implement
+// TODO:: find how to implement without Xclip or Xcel
 //
 // Copies generated string to clipboard
-func CopyToClipboard() {
-	fmt.Println(`
-    *************************
-       copied to clipboard
-    `)
-}
+func CopyToClipboard() {}
