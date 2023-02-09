@@ -1,9 +1,10 @@
-package main
+// Package utils defines helper functions
+package utils
 
 import (
 	"os"
 
-	"github.com/musaubrian/tinygo/model"
+	"github.com/musaubrian/tinygo/pkg/model"
 )
 
 // Creates the 'db/' directory
