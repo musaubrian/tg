@@ -1,11 +1,11 @@
 package model
 
-import"testing"
+import "testing"
 
 func TestGetPath(t *testing.T) {
-    got := GetPath()
+	got := GetPath()
 
-    if got == "" {
-        t.Error("Expected a non-empty string got an empty string")
-    }
+	if got == "" {
+		t.Error("Expected a non-empty string got an empty string")
+	}
 }

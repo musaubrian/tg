@@ -22,15 +22,13 @@ type Site struct {
 	Password string
 }
 
-
-
 // SetupDb creates a connection to the db
 // and initializes the table and columns
 func SetupDb() {
 	var err error
 
-    homePath := GetPath()
-    fullPath := path.Join(homePath, "tinygo.db")
+	homePath := GetPath()
+	fullPath := path.Join(homePath, "tinygo.db")
 
 	db, err = gorm.Open(sqlite.Open(fullPath), &gorm.Config{})
 	if err != nil {
