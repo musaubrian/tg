@@ -29,4 +29,4 @@ go build .
 
 Contributions are welcomed
 
-> ## Find the docs [here][./docs/docs.md)
+> ## Find the docs [here](./docs/docs.md)
