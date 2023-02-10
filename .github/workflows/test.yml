@@ -1,0 +1,12 @@
+# Tests code on push
+name: tests
+on: push
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: go-test
+        run: go test ./...
