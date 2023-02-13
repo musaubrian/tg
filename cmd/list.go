@@ -15,12 +15,12 @@ var listCmd = &cobra.Command{
     in the database`,
 
 	Run: func(cmd *cobra.Command, args []string) {
-        sites := model.ListAll()
-        for _, site := range sites {
-            fmt.Println("\nSiteName: ", site.Name)
-            fmt.Println("UserName: ", site.UserName)
-            fmt.Println("Password: ", site.Password)
-        }
+		sites := model.ListAll()
+		for _, site := range sites {
+			fmt.Println("\nSiteName: ", site.Name)
+			fmt.Println("UserName: ", site.UserName)
+			fmt.Println("Password: ", site.Password)
+		}
 	},
 }
 

@@ -86,17 +86,17 @@ func SearchSite() {
 		fmt.Println("No site found matching", sitename)
 
 	} else {
-        fmt.Println("\nUsername : ", site.UserName)
-        fmt.Println("Site Name: ", site.Name)
-        fmt.Println("Site Password: ", site.Password)
-    }
+		fmt.Println("\nUsername : ", site.UserName)
+		fmt.Println("Site Name: ", site.Name)
+		fmt.Println("Site Password: ", site.Password)
+	}
 }
 
 // Returns all the records in the db
-func ListAll() []Site{
+func ListAll() []Site {
 	var sites []Site
 	db.Find(&sites)
 	fmt.Println("\n// Listing all records")
-	
-    return sites
+
+	return sites
 }
