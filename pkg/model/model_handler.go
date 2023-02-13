@@ -74,7 +74,7 @@ func DeleteSite() {
 	fmt.Printf("\nDeleted {%s} successfully\n", sitename)
 }
 
-// SearchSite searches for a siteName that matches the users input
+// Returns records matching the users prompt(the site name)
 func SearchSite() {
 	var site Site
 
@@ -84,21 +84,19 @@ func SearchSite() {
 	result := db.Where("name = ?", sitename).First(&site)
 	if result.RowsAffected == 0 {
 		fmt.Println("No site found matching", sitename)
+
 	} else {
-		fmt.Println("\nSiteName:", site.Name)
-		fmt.Println("Username:", site.UserName)
-		fmt.Printf("Password: %s\n", site.Password)
-	}
+        fmt.Println("\nUsername : ", site.UserName)
+        fmt.Println("Site Name: ", site.Name)
+        fmt.Println("Site Password: ", site.Password)
+    }
 }
 
-// Lists all the records in the db
-func ListAll() {
+// Returns all the records in the db
+func ListAll() []Site{
 	var sites []Site
 	db.Find(&sites)
 	fmt.Println("\n// Listing all records")
-	for _, site := range sites {
-		fmt.Println("\nSiteName: ", site.Name)
-		fmt.Println("UserName: ", site.UserName)
-		fmt.Println("Password: ", site.Password)
-	}
+	
+    return sites
 }

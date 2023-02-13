@@ -12,7 +12,7 @@ var searchCmd = &cobra.Command{
 	Long: `Searches for a specified site records(sitename, username and password)
     `,
 	Run: func(cmd *cobra.Command, args []string) {
-		model.SearchSite()
+       model.SearchSite()
 	},
 }
 
