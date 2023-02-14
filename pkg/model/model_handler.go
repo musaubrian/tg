@@ -86,9 +86,9 @@ func SearchSite() {
 		fmt.Println("No site found matching", sitename)
 
 	} else {
-		fmt.Println("\nUsername : ", site.UserName)
-		fmt.Println("Site Name: ", site.Name)
-		fmt.Println("Site Password: ", site.Password)
+		fmt.Println("\nUsername:", site.UserName)
+		fmt.Println("Site Name:", site.Name)
+		fmt.Println("Site Password:", site.Password)
 	}
 }
 
