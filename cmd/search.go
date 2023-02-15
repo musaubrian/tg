@@ -7,10 +7,10 @@ import (
 
 // searchCmd represents the search command
 var searchCmd = &cobra.Command{
-	Use:   "search",
-	Short: "Searches for a specified site records",
-	Long: `Searches for a specified site records(sitename, username and password)`,
-    Aliases: []string{"s"},
+	Use:     "search",
+	Short:   "Searches for a specified site records",
+	Long:    `Searches for a specified site records(sitename, username and password)`,
+	Aliases: []string{"s"},
 	Run: func(cmd *cobra.Command, args []string) {
 		model.SearchSite()
 	},

@@ -7,9 +7,9 @@ import (
 
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
-	Use:   "delete",
-	Short: "Remove a record from the database",
-    Aliases: []string{"del", "d"},
+	Use:     "delete",
+	Short:   "Remove a record from the database",
+	Aliases: []string{"del", "d"},
 	// Long: ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		model.DeleteSite()

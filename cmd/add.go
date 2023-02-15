@@ -7,10 +7,10 @@ import (
 
 // addCmd represents the add command
 var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "Add records to the db",
-	Long:  `Add new records(sitename, username and password) to the database`,
-    Aliases: []string{"a"},
+	Use:     "add",
+	Short:   "Add records to the db",
+	Long:    `Add new records(sitename, username and password) to the database`,
+	Aliases: []string{"a"},
 	Run: func(cmd *cobra.Command, args []string) {
 		model.AddSite()
 	},
