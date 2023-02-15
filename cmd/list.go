@@ -13,7 +13,7 @@ var listCmd = &cobra.Command{
 	Short: "List all records in the database",
 	Long: `Lists all the records(sitename, username, password) available 
     in the database`,
-
+	Aliases: []string{"l"},
 	Run: func(cmd *cobra.Command, args []string) {
 		sites := model.ListAll()
 		for _, site := range sites {

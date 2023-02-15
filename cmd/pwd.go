@@ -9,8 +9,9 @@ import (
 
 // pwdCmd represents the pwd command
 var pwdCmd = &cobra.Command{
-	Use:   "pwd",
-	Short: "Generate a 15 character string as password",
+	Use:     "pwd",
+	Short:   "Generate a 15 character string as password",
+	Aliases: []string{"p"},
 	// Long: ``
 	Run: func(cmd *cobra.Command, args []string) {
 		pwd := utils.GeneratePassword()
