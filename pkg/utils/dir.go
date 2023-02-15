@@ -1,4 +1,4 @@
-// Package utils defines helper functions
+// Package utils defines utility functions
 package utils
 
 import (
