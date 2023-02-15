@@ -6,9 +6,15 @@
 import "github.com/musaubrian/tinygo"
 ```
 
+Tinygo is a Cli tool to help manage your login credentials, everything is stored locally so you can rest easy
+
 ### Copyright © 2023 Ernest
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+### Installation and usage
+
+Check the documentation at https://musaubrian.github.io/tinygo/
 
 ## Index
 
@@ -25,14 +31,13 @@ import "github.com/musaubrian/tinygo/cmd"
 - [func Execute()](<#func-execute>)
 
 
-## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L26>)
+## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L24>)
 
 ```go
 func Execute()
 ```
 
-Execute adds all child commands to the root command and sets flags appropriately. This is called by main.main().
-It only needs to happen once to the rootCmd.
+Execute adds all child commands to the root command and sets flags appropriately. This is called by main.main\(\). It only needs to happen once to the rootCmd.
 
 # model
 
@@ -47,11 +52,11 @@ Package model sets up the database and defines functions that interact with the 
 - [func AddSite()](<#func-addsite>)
 - [func DeleteSite()](<#func-deletesite>)
 - [func GetPath() string](<#func-getpath>)
-- [func ListAll()](<#func-listall>)
 - [func SearchSite()](<#func-searchsite>)
 - [func SetupDb()](<#func-setupdb>)
 - [func UpdateSite()](<#func-updatesite>)
 - [type Site](<#type-site>)
+  - [func ListAll() []Site](<#func-listall>)
 
 
 ## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L39>)
@@ -78,21 +83,13 @@ func GetPath() string
 
 Get full path to homeDir
 
-## func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L95>)
-
-```go
-func ListAll()
-```
-
-Lists all the records in the db
-
 ## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L78>)
 
 ```go
 func SearchSite()
 ```
 
-SearchSite searches for a siteName that matches the users input
+Returns records matching the users prompt\(the site name\)
 
 ## func [SetupDb](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model.go#L27>)
 
@@ -123,19 +120,28 @@ type Site struct {
 }
 ```
 
+### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/pkg/model/model_handler.go#L96>)
+
+```go
+func ListAll() []Site
+```
+
+Returns all the records in the db
+
 # utils
 
 ```go
 import "github.com/musaubrian/tinygo/pkg/utils"
 ```
 
-Package utils defines helper functions
+Package utils defines utility functions
 
 ## Index
 
 - [func CopyToClipboard()](<#func-copytoclipboard>)
 - [func CreateDir() error](<#func-createdir>)
 - [func GeneratePassword() string](<#func-generatepassword>)
+- [func GetVersion() (string, error)](<#func-getversion>)
 
 
 ## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/pwdGen.go#L26>)
@@ -163,6 +169,14 @@ func GeneratePassword() string
 ```
 
 Returns a random 15 character string from the collection
+
+## func [GetVersion](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/version.go#L9>)
+
+```go
+func GetVersion() (string, error)
+```
+
+Returns the version of the app based on the latest tag and a possible error
 
 
 
