@@ -9,12 +9,12 @@ import (
 
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Displays tinygo's version",
-    Aliases: []string{"v"},
-    Run: func(cmd *cobra.Command, args []string) {
-        version := utils.GetVersion()
-        fmt.Println("tinygo", version)
+	Use:     "version",
+	Short:   "Displays tinygo's version",
+	Aliases: []string{"v"},
+	Run: func(cmd *cobra.Command, args []string) {
+		version := utils.GetVersion()
+		fmt.Println("tinygo", version)
 	},
 }
 
