@@ -9,6 +9,7 @@ import (
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update a single site records",
+    Aliases: []string{"u"},
 	// Long: ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		model.UpdateSite()
