@@ -15,9 +15,9 @@ var versionCmd = &cobra.Command{
 	Aliases: []string{"v"},
 	Run: func(cmd *cobra.Command, args []string) {
 		version, err := utils.GetVersion()
-        if err != nil {
-            log.Fatal("Could not get version from git tag")
-        }
+		if err != nil {
+			log.Fatal("Could not get version from git tag")
+		}
 		fmt.Println("tinygo", version)
 	},
 }

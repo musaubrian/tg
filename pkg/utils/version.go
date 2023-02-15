@@ -13,6 +13,6 @@ func GetVersion() (string, error) {
 	cmd := exec.Command(arg0, arg1, arg2)
 
 	result, err := cmd.Output()
-	
-    return string(result), err
+
+	return string(result), err
 }
