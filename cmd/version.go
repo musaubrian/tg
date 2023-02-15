@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/musaubrian/tinygo/pkg/utils"
 	"github.com/spf13/cobra"
@@ -13,7 +14,10 @@ var versionCmd = &cobra.Command{
 	Short:   "Displays tinygo's version",
 	Aliases: []string{"v"},
 	Run: func(cmd *cobra.Command, args []string) {
-		version := utils.GetVersion()
+		version, err := utils.GetVersion()
+        if err != nil {
+            log.Fatal("Could not get version from git tag")
+        }
 		fmt.Println("tinygo", version)
 	},
 }
