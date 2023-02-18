@@ -9,13 +9,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "tinygo",
-	Short: "A cli tool to help manage passwords",
-	Long:  `A cli tool to help manage your logins(username and passwords)`,
-    Version: "0.3.0",
+	Use:     "tinygo",
+	Short:   "A cli tool to help manage passwords",
+	Long:    `A cli tool to help manage your logins(username and passwords)`,
+	Version: "0.3.0",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) {},
