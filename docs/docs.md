@@ -31,7 +31,7 @@ import "github.com/musaubrian/tinygo/cmd"
 - [func Execute()](<#func-execute>)
 
 
-## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L24>)
+## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L25>)
 
 ```go
 func Execute()
@@ -141,7 +141,6 @@ Package utils defines utility functions
 - [func CopyToClipboard()](<#func-copytoclipboard>)
 - [func CreateDir() error](<#func-createdir>)
 - [func GeneratePassword() string](<#func-generatepassword>)
-- [func GetVersion() (string, error)](<#func-getversion>)
 
 
 ## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/pwdGen.go#L26>)
@@ -169,14 +168,6 @@ func GeneratePassword() string
 ```
 
 Returns a random 15 character string from the collection
-
-## func [GetVersion](<https://github.com/musaubrian/tinygo/blob/main/pkg/utils/version.go#L9>)
-
-```go
-func GetVersion() (string, error)
-```
-
-Returns the version of the app based on the latest tag and a possible error
 
 
 
