@@ -7,7 +7,11 @@ import (
 	"os"
 	"path"
 	"strings"
+
+	"github.com/fatih/color"
 )
+
+var bold = color.New(color.Bold)
 
 // Get full path to homeDir
 func GetPath() string {
@@ -39,51 +43,51 @@ func getInput(prompt string) string {
 func AddSite() {
 	var newSite Site
 
-	fmt.Println("\n// Adding record")
+	bold.Println("\n// Adding record")
 	newSite.Name = getInput("Site's name")
 	newSite.UserName = getInput("Username")
 	newSite.Password = getInput("Password")
 	db.Create(&newSite)
-	fmt.Printf("\nSuccessfully added {%s}\n", newSite.Name)
+	bold.Printf("\nSuccessfully added {%s}\n", newSite.Name)
 }
 
 // Updates the contents of a specified site
 func UpdateSite() {
 	var site Site
 
-	fmt.Println("\n// Updating record")
+	bold.Println("\n// Updating record")
 	sitename := getInput("Site to Update")
 	db.Where("name = ?", sitename).First(&site)
 
-	fmt.Printf(
+	bold.Printf(
 		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n\n",
 		site.Name, site.UserName, site.Password)
 	site.Name = getInput("New site name")
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")
 	db.Save(&site)
-	fmt.Printf("\nUpdated to {%s}\n\n", site.Name)
+	bold.Printf("\nUpdated to {%s}\n\n", site.Name)
 }
 
 // Delete records associated with a site
 func DeleteSite() {
 	var site Site
-	fmt.Println("\n// Deleting record")
+	bold.Println("\n// Deleting record")
 	sitename := getInput("Site to delete")
 	db.Where("name = ?", sitename).Delete(&site)
-	fmt.Printf("\nDeleted {%s} successfully\n", sitename)
+	bold.Printf("\nDeleted {%s} successfully\n", sitename)
 }
 
 // Returns records matching the users prompt(the site name)
 func SearchSite() {
 	var site Site
 
-	fmt.Println("\n// Searching for record")
+	bold.Println("\n// Searching for record")
 	sitename := getInput("Site to search for")
-	fmt.Println("\n//Searching for", sitename)
+	bold.Println("\n//Searching for", sitename)
 	result := db.Where("name = ?", sitename).First(&site)
 	if result.RowsAffected == 0 {
-		fmt.Println("No site found matching", sitename)
+		bold.Println("No site found matching", sitename)
 
 	} else {
 		fmt.Println("\nUsername:", site.UserName)
@@ -96,7 +100,7 @@ func SearchSite() {
 func ListAll() []Site {
 	var sites []Site
 	db.Find(&sites)
-	fmt.Println("\n// Listing all records")
+	bold.Println("\n// Listing all records")
 
 	return sites
 }
