@@ -1,9 +1,13 @@
-package utils
+package utils_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/musaubrian/tinygo/internal/utils"
+)
 
 func TestGeneratePassword(t *testing.T) {
-	got := GeneratePassword()
+	got := utils.GeneratePassword()
 	want := 15
 
 	if len(got) != want {

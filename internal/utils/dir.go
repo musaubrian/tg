@@ -4,7 +4,7 @@ package utils
 import (
 	"os"
 
-	"github.com/musaubrian/tinygo/pkg/model"
+	"github.com/musaubrian/tinygo/internal/model"
 )
 
 // Creates the 'db/' directory

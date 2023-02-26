@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/musaubrian/tinygo/pkg/model"
-	"github.com/musaubrian/tinygo/pkg/utils"
+	"github.com/musaubrian/tinygo/internal/model"
+	"github.com/musaubrian/tinygo/internal/utils"
 	"github.com/spf13/cobra"
 )
 

@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/musaubrian/tinygo/pkg/utils"
+	"github.com/musaubrian/tinygo/internal/utils"
 	"github.com/spf13/cobra"
 )
 
