@@ -1,9 +1,8 @@
 /*
-
 Tinygo is a Cli tool to help manage your login credentials, everything
 is stored locally so you can rest easy
 
-Copyright © 2023 Ernest
+# Copyright © 2023 Ernest
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -13,7 +12,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Installation and usage
+# Installation and usage
 
 Check the documentation at https://musaubrian.github.io/tinygo/
 */
