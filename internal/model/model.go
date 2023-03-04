@@ -3,16 +3,12 @@
 package model
 
 import (
-	"log"
 	"path"
 
+	"github.com/musaubrian/tinygo/internal/utils"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
-
-// db defines a gorm instance
-// https://gorm.io
-var db *gorm.DB
 
 // Site defines the structure of the db
 type Site struct {
@@ -22,22 +18,30 @@ type Site struct {
 	Password string
 }
 
+// db defines a gorm instance
+// https://gorm.io
+var db *gorm.DB
+
 // SetupDb creates a connection to the db
 // and initializes the table and columns
-func SetupDb() {
+// Returns a possible error
+func SetupDB() error {
 	var err error
 
-	homePath := GetPath()
+	homePath, err := utils.GetPath()
+	if err != nil {
+		return err
+	}
 	fullPath := path.Join(homePath, "tinygo.db")
 
 	db, err = gorm.Open(sqlite.Open(fullPath), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Could not open db: ", err)
-		panic(err)
+		return err
 	}
 
 	err = db.AutoMigrate(&Site{})
 	if err != nil {
-		log.Fatal("Could not setup tables and stuff: ", err)
+		return err
 	}
+	return err
 }

@@ -28,7 +28,9 @@ func Execute() {
 		log.Fatal("Cannot create directory: ", err)
 	}
 	// Call SetupDb
-	model.SetupDb()
+	if err := model.SetupDB(); err != nil {
+		log.Fatal("Db setup error ", err)
+	}
 
 	err := rootCmd.Execute()
 	if err != nil {
