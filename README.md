@@ -1,8 +1,9 @@
 # TinyGo
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/musaubrian/tinygo)](https://goreportcard.com/report/github.com/musaubrian/tinygo)
 [![Go Reference](https://pkg.go.dev/badge/github.com/musaubrian/tinygo.svg)](https://pkg.go.dev/github.com/musaubrian/tinygo)
-
 [![tests](https://github.com/musaubrian/tinygo/actions/workflows/test.yml/badge.svg)](https://github.com/musaubrian/tinygo/actions/workflows/test.yml)
+
  > A cli tool to help manage your passwords
 
 It is a **Go** version of [tinyDb](https://github.com/musaubrian/tinydb)
