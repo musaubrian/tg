@@ -14,7 +14,7 @@ var rootCmd = &cobra.Command{
 	Use:     "tinygo",
 	Short:   "A cli tool to help manage passwords",
 	Long:    `A cli tool to help manage your logins(username and passwords)`,
-	Version: "0.4.0",
+	Version: "0.4.1",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) {},
@@ -28,7 +28,9 @@ func Execute() {
 		log.Fatal("Cannot create directory: ", err)
 	}
 	// Call SetupDb
-	model.SetupDb()
+	if err := model.SetupDB(); err != nil {
+		log.Fatal("Db setup error ", err)
+	}
 
 	err := rootCmd.Execute()
 	if err != nil {

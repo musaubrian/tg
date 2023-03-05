@@ -5,25 +5,12 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path"
 	"strings"
 
 	"github.com/fatih/color"
 )
 
 var bold = color.New(color.Bold)
-
-// Get full path to homeDir
-func GetPath() string {
-
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fullPath := path.Join(homeDir, ".db")
-
-	return fullPath
-}
 
 // Get input from the user
 func getInput(prompt string) string {
