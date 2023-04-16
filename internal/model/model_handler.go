@@ -10,7 +10,11 @@ import (
 	"github.com/fatih/color"
 )
 
-var bold = color.New(color.Bold)
+var (
+	bold    = color.New(color.Bold)
+	success = color.New(color.Bold, color.FgGreen)
+	del     = color.New(color.Bold, color.FgRed)
+)
 
 // Get input from the user
 func getInput(prompt string) string {
@@ -35,7 +39,7 @@ func AddSite() {
 	newSite.UserName = getInput("Username")
 	newSite.Password = getInput("Password")
 	db.Create(&newSite)
-	bold.Printf("\nSuccessfully added {%s}\n", newSite.Name)
+	success.Printf("\nSuccessfully added {%s}\n", newSite.Name)
 }
 
 // Updates the contents of a specified site
@@ -44,7 +48,11 @@ func UpdateSite() {
 
 	bold.Println("\n// Updating record")
 	sitename := getInput("Site to Update")
-	db.Where("name = ?", sitename).First(&site)
+	err := db.Where("name = ?", sitename).First(&site)
+	if err.Error != nil {
+		del.Printf("Record not found")
+		return
+	}
 
 	bold.Printf(
 		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n\n",
@@ -53,7 +61,7 @@ func UpdateSite() {
 	site.UserName = getInput("New userName")
 	site.Password = getInput("New Password")
 	db.Save(&site)
-	bold.Printf("\nUpdated to {%s}\n\n", site.Name)
+	success.Printf("\nUpdated {%s} to {%s}\n\n", sitename, site.Name)
 }
 
 // Delete records associated with a site
@@ -62,7 +70,7 @@ func DeleteSite() {
 	bold.Println("\n// Deleting record")
 	sitename := getInput("Site to delete")
 	db.Where("name = ?", sitename).Delete(&site)
-	bold.Printf("\nDeleted {%s} successfully\n", sitename)
+	del.Printf("\nDeleted {%s} successfully\n", sitename)
 }
 
 // Returns records matching the users prompt(the site name)
@@ -75,7 +83,6 @@ func SearchSite() {
 	result := db.Where("name = ?", sitename).First(&site)
 	if result.RowsAffected == 0 {
 		bold.Println("No site found matching", sitename)
-
 	} else {
 		fmt.Println("\nUsername:", site.UserName)
 		fmt.Println("Site Name:", site.Name)

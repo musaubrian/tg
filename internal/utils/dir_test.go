@@ -14,7 +14,6 @@ func TestCreateDir(t *testing.T) {
 
 func TestGetPath(t *testing.T) {
 	fullPath, err := utils.GetPath()
-
 	if err != nil {
 		t.Error("Expected nil got an error")
 	}

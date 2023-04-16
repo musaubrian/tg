@@ -6,8 +6,7 @@ import (
 
 // Returns a random 15 character string from the collection
 func GeneratePassword() string {
-
-	var collection = []byte("0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM~!@#$%^&*(()-?/")
+	collection := []byte("0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM~!@#$%^&*(()-?/")
 
 	pwdLength := 15
 	pwd := make([]byte, pwdLength)
