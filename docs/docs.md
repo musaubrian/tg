@@ -52,7 +52,7 @@ Package model sets up the database and defines functions that interact with the 
   - [func ListAll() []Site](<#func-listall>)
 
 
-## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L30>)
+## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L34>)
 
 ```go
 func AddSite()
@@ -60,7 +60,7 @@ func AddSite()
 
 Adds a new site's details to the db
 
-## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L60>)
+## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L68>)
 
 ```go
 func DeleteSite()
@@ -68,7 +68,7 @@ func DeleteSite()
 
 Delete records associated with a site
 
-## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L69>)
+## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L77>)
 
 ```go
 func SearchSite()
@@ -84,7 +84,7 @@ func SetupDB() error
 
 SetupDb creates a connection to the db and initializes the table and columns Returns a possible error
 
-## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L42>)
+## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L46>)
 
 ```go
 func UpdateSite()
@@ -105,7 +105,7 @@ type Site struct {
 }
 ```
 
-### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L87>)
+### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L94>)
 
 ```go
 func ListAll() []Site
@@ -129,7 +129,7 @@ Package utils defines utility functions
 - [func GetPath() (string, error)](<#func-getpath>)
 
 
-## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L26>)
+## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L25>)
 
 ```go
 func CopyToClipboard()
