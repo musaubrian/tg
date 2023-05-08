@@ -105,7 +105,7 @@ type Site struct {
 }
 ```
 
-### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L94>)
+### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L97>)
 
 ```go
 func ListAll() []Site
@@ -155,13 +155,13 @@ func GeneratePassword() string
 
 Returns a random 15 character string from the collection
 
-## func [GetPath](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/dir.go#L11>)
+## func [GetPath](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/dir.go#L10>)
 
 ```go
 func GetPath() (string, error)
 ```
 
-Get full path to homeDir
+Get full path to db location parent
 
 
 
