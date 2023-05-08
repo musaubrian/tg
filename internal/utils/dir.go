@@ -2,19 +2,19 @@
 package utils
 
 import (
-	"log"
 	"os"
 	"path"
 )
 
-// Get full path to homeDir
+// Get full path to db location parent
 func GetPath() (string, error) {
-	var fullPath string
-	var err error
+	var (
+		fullPath string
+		err      error
+	)
 
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		log.Fatal(err)
 		return fullPath, err
 	}
 	fullPath = path.Join(homeDir, ".db")

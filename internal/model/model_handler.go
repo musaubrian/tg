@@ -75,18 +75,21 @@ func DeleteSite() {
 
 // Returns records matching the users prompt(the site name)
 func SearchSite() {
-	var site Site
+	var searchResults []Site
 
 	bold.Println("\n// Searching for record")
 	sitename := getInput("Site to search for")
 	bold.Println("\n//Searching for", sitename)
-	result := db.Where("name = ?", sitename).First(&site)
+	prepd_sitename := "%" + sitename + "%"
+	result := db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_sitename).Find(&searchResults)
 	if result.RowsAffected == 0 {
-		bold.Println("No site found matching", sitename)
+		bold.Printf("No site found matching [%s]\n", sitename)
 	} else {
-		fmt.Println("\nUsername:", site.UserName)
-		fmt.Println("Site Name:", site.Name)
-		fmt.Println("Site Password:", site.Password)
+		for _, site := range searchResults {
+			fmt.Println("\nUsername:", site.UserName)
+			fmt.Println("Site Name:", site.Name)
+			fmt.Println("Site Password:", site.Password)
+		}
 	}
 }
 
