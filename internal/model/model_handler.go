@@ -14,6 +14,7 @@ var (
 	bold    = color.New(color.Bold)
 	success = color.New(color.Bold, color.FgGreen)
 	del     = color.New(color.Bold, color.FgRed)
+	italic  = color.New(color.Italic, color.Bold)
 )
 
 // Get input from the user
@@ -44,7 +45,10 @@ func AddSite() {
 
 // Updates the contents of a specified site
 func UpdateSite() {
-	var site Site
+	var (
+		site      Site
+		prev_site Site
+	)
 
 	bold.Println("\n// Updating record")
 	sitename := getInput("Site to Update")
@@ -54,12 +58,28 @@ func UpdateSite() {
 		return
 	}
 
+	prev_site = site
+	italic.Println("Press Enter/Return without any value to retain previous values")
 	bold.Printf(
-		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n\n",
+		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n",
 		site.Name, site.UserName, site.Password)
+
 	site.Name = getInput("New site name")
+	if site.Name == "" {
+		site.Name = prev_site.Name
+		italic.Printf("Reusing previous sitename: %s\n", site.Name)
+	}
 	site.UserName = getInput("New userName")
+
+	if site.UserName == "" {
+		site.UserName = prev_site.UserName
+		italic.Printf("Reusing previous username: %s\n", site.UserName)
+	}
 	site.Password = getInput("New Password")
+	if site.Password == "" {
+		site.Password = prev_site.Password
+		italic.Printf("Reusing previous password: %s\n", site.Password)
+	}
 	db.Save(&site)
 	success.Printf("\nUpdated {%s} to {%s}\n\n", sitename, site.Name)
 }
@@ -79,6 +99,9 @@ func SearchSite() {
 
 	bold.Println("\n// Searching for record")
 	sitename := getInput("Site to search for")
+	if sitename == "" {
+		log.Fatal(del.Println("You need to enter a value"))
+	}
 	bold.Println("\n//Searching for", sitename)
 	prepd_sitename := "%" + sitename + "%"
 	result := db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_sitename).Find(&searchResults)
