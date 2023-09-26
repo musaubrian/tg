@@ -2,6 +2,7 @@ package model
 
 import (
 	"bufio"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -94,8 +95,9 @@ func DeleteSite() {
 }
 
 // Returns records matching the users prompt(the site name)
-func SearchSite() {
+func SearchSite() ([]Site, error) {
 	var searchResults []Site
+	var nothingFound error
 
 	bold.Println("\n// Searching for record")
 	sitename := getInput("Site to search for")
@@ -106,14 +108,11 @@ func SearchSite() {
 	prepd_sitename := "%" + sitename + "%"
 	result := db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_sitename).Find(&searchResults)
 	if result.RowsAffected == 0 {
-		bold.Printf("No site found matching [%s]\n", sitename)
-	} else {
-		for _, site := range searchResults {
-			fmt.Println("\nUsername:", site.UserName)
-			fmt.Println("Site Name:", site.Name)
-			fmt.Println("Site Password:", site.Password)
-		}
+		err := fmt.Sprintf("No site found matching [%s]\n", sitename)
+		nothingFound = errors.New(err)
+		return searchResults, nothingFound
 	}
+	return searchResults, nothingFound
 }
 
 // Returns all the records in the db

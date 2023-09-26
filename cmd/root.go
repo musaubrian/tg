@@ -4,17 +4,20 @@ import (
 	"log"
 	"os"
 
+	"github.com/cheynewallace/tabby"
 	"github.com/musaubrian/tinygo/internal/model"
 	"github.com/musaubrian/tinygo/internal/utils"
 	"github.com/spf13/cobra"
 )
+
+var t = tabby.New()
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:     "tinygo",
 	Short:   "A cli tool to help manage passwords",
 	Long:    `A cli tool to help manage your logins(username and passwords)`,
-	Version: "0.4.5",
+	Version: "0.5.0",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) {},
@@ -48,4 +51,5 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.PersistentFlags().BoolP("pretty", "p", false, "List results in a nice table format")
 }

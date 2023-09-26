@@ -3,6 +3,7 @@ module github.com/musaubrian/tinygo
 go 1.19
 
 require (
+	github.com/cheynewallace/tabby v1.1.1
 	github.com/fatih/color v1.14.1
 	github.com/spf13/cobra v1.6.1
 	gorm.io/driver/sqlite v1.4.4

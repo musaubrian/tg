@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"fmt"
+	"log"
+
 	"github.com/musaubrian/tinygo/internal/model"
 	"github.com/spf13/cobra"
 )
@@ -12,7 +15,30 @@ var searchCmd = &cobra.Command{
 	Long:    `Searches for a specified site records(sitename, username and password)`,
 	Aliases: []string{"s"},
 	Run: func(cmd *cobra.Command, args []string) {
-		model.SearchSite()
+		results, err := model.SearchSite()
+
+		if err != nil {
+			log.Fatal(err)
+		}
+		pretty, err := rootCmd.Flags().GetBool("pretty")
+
+		if err != nil {
+			log.Fatal(err)
+
+		}
+		if pretty {
+			t.AddHeader("#", "USER_NAME", "SITE_NAME", "PASSWORD")
+			for i, v := range results {
+				t.AddLine(i+1, v.UserName, v.Name, v.Password)
+			}
+			t.Print()
+		} else {
+			for _, site := range results {
+				fmt.Println("\nSiteName:", site.Name)
+				fmt.Println("UserName:", site.UserName)
+				fmt.Println("Password:", site.Password)
+			}
+		}
 	},
 }
 
