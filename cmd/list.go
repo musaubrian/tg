@@ -22,7 +22,7 @@ var listCmd = &cobra.Command{
 		}
 		sites := model.ListAll()
 		if pretty {
-			t.AddHeader("#", "USERNAME", "SITE_NAME", "PASSWORD")
+			t.AddHeader("\n#", "USERNAME", "SITE_NAME", "PASSWORD")
 			for i, site := range sites {
 				t.AddLine(i+1, site.UserName, site.Name, site.Password)
 			}

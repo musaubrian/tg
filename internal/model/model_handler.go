@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
+	"gorm.io/gorm"
 )
 
 var (
@@ -95,20 +96,19 @@ func DeleteSite() {
 }
 
 // Returns records matching the users prompt(the site name)
-func SearchSite() ([]Site, error) {
+func SearchRecords(value string, recordType string) ([]Site, error) {
 	var searchResults []Site
 	var nothingFound error
+	var result *gorm.DB
 
-	bold.Println("\n// Searching for record")
-	sitename := getInput("Site to search for")
-	if sitename == "" {
-		log.Fatal(del.Println("You need to enter a value"))
+	prepd_sitename := "%" + value + "%"
+	if recordType == "sitename" {
+		result = db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_sitename).Find(&searchResults)
+	} else {
+		result = db.Raw("SELECT * FROM `Sites` WHERE user_name LIKE ?", prepd_sitename).Find(&searchResults)
 	}
-	bold.Println("\n//Searching for", sitename)
-	prepd_sitename := "%" + sitename + "%"
-	result := db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_sitename).Find(&searchResults)
 	if result.RowsAffected == 0 {
-		err := fmt.Sprintf("No site found matching [%s]\n", sitename)
+		err := fmt.Sprintf("No record found matching [%s]\n", value)
 		nothingFound = errors.New(err)
 		return searchResults, nothingFound
 	}
