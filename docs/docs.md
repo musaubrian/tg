@@ -114,7 +114,7 @@ type Site struct {
 ```
 
 <a name="ListAll"></a>
-### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L123>)
+### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L122>)
 
 ```go
 func ListAll() []Site
@@ -123,7 +123,7 @@ func ListAll() []Site
 Returns all the records in the db
 
 <a name="SearchRecords"></a>
-### func [SearchRecords](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L103>)
+### func [SearchRecords](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L102>)
 
 ```go
 func SearchRecords(value string, recordType string) ([]Site, error)
@@ -148,13 +148,11 @@ Package utils defines utility functions
 
 
 <a name="CopyToClipboard"></a>
-## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L27>)
+## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L25>)
 
 ```go
 func CopyToClipboard(text string) error
 ```
-
-TODO:: find how to implement without Xclip or Xcel
 
 Copies generated string to clipboard
 
