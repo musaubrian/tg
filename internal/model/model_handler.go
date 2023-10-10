@@ -89,7 +89,6 @@ func UpdateSite() {
 // Delete records associated with a site
 func DeleteSite(value string, recordType string) {
 	var site Site
-	bold.Println("// Deleting record(s)")
 	if recordType == "site" {
 		db.Where("name = ?", value).Delete(&site)
 	} else {
