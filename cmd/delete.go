@@ -11,13 +11,39 @@ var deleteCmd = &cobra.Command{
 	Short:   "Remove a record from the database",
 	Aliases: []string{"del", "d"},
 	// Long: ``,
+	Example: `
+tinygo delete site
+tinygo delete user
+	`,
+}
+
+var deleteSiteCmd = &cobra.Command{
+	Use:   "site",
+	Short: "Remove a record using its site name",
 	Run: func(cmd *cobra.Command, args []string) {
-		model.DeleteSite()
+		siteName := model.GetInput("SiteName")
+		model.DeleteSite(siteName, "site")
+	},
+}
+var deleteSiteByUserCmd = &cobra.Command{
+	Use:   "user",
+	Short: "Remove a record using its username",
+	Long: `
+Remove a record using its username
+
+CAUTION!!
+If multiple sites have the same username, they will all be deleted
+	`,
+	Run: func(cmd *cobra.Command, args []string) {
+		userName := model.GetInput("UserName")
+		model.DeleteSite(userName, "username")
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(deleteCmd)
+	deleteCmd.AddCommand(deleteSiteCmd)
+	deleteCmd.AddCommand(deleteSiteByUserCmd)
 
 	// Here you will define your flags and configuration settings.
 

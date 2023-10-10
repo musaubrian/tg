@@ -20,7 +20,7 @@ var (
 )
 
 // Get input from the user
-func getInput(prompt string) string {
+func GetInput(prompt string) string {
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Printf("$ %s: ", prompt)
 
@@ -38,9 +38,9 @@ func AddSite() {
 	var newSite Site
 
 	bold.Println("\n// Adding record")
-	newSite.Name = getInput("Site's name")
-	newSite.UserName = getInput("Username")
-	newSite.Password = getInput("Password")
+	newSite.Name = GetInput("Site's name")
+	newSite.UserName = GetInput("Username")
+	newSite.Password = GetInput("Password")
 	db.Create(&newSite)
 	success.Printf("\nSuccessfully added {%s}\n", newSite.Name)
 }
@@ -53,7 +53,7 @@ func UpdateSite() {
 	)
 
 	bold.Println("\n// Updating record")
-	sitename := getInput("Site to Update")
+	sitename := GetInput("Site to Update")
 	err := db.Where("name = ?", sitename).First(&site)
 	if err.Error != nil {
 		del.Printf("Record not found")
@@ -66,18 +66,18 @@ func UpdateSite() {
 		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n",
 		site.Name, site.UserName, site.Password)
 
-	site.Name = getInput("New site name")
+	site.Name = GetInput("New site name")
 	if site.Name == "" {
 		site.Name = prev_site.Name
 		italic.Printf("Reusing previous sitename: %s\n", site.Name)
 	}
-	site.UserName = getInput("New userName")
+	site.UserName = GetInput("New userName")
 
 	if site.UserName == "" {
 		site.UserName = prev_site.UserName
 		italic.Printf("Reusing previous username: %s\n", site.UserName)
 	}
-	site.Password = getInput("New Password")
+	site.Password = GetInput("New Password")
 	if site.Password == "" {
 		site.Password = prev_site.Password
 		italic.Printf("Reusing previous password: %s\n", site.Password)
@@ -87,12 +87,16 @@ func UpdateSite() {
 }
 
 // Delete records associated with a site
-func DeleteSite() {
+func DeleteSite(value string, recordType string) {
 	var site Site
-	bold.Println("\n// Deleting record")
-	sitename := getInput("Site to delete")
-	db.Where("name = ?", sitename).Delete(&site)
-	del.Printf("\nDeleted {%s} successfully\n", sitename)
+	bold.Println("// Deleting record(s)")
+	if recordType == "site" {
+		db.Where("name = ?", value).Delete(&site)
+	} else {
+		db.Where("user_name = ?", value).Delete(&site)
+	}
+	del.Printf("\nDeleted {%s} successfully\n", value)
+
 }
 
 // Returns records matching the users prompt(the site name)

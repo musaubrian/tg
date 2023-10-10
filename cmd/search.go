@@ -16,7 +16,7 @@ var searchCmd = &cobra.Command{
 	Aliases: []string{"s"},
 }
 
-var SearchByUserName = &cobra.Command{
+var searchByUserName = &cobra.Command{
 	Use:     "user",
 	Aliases: []string{"u"},
 	Short:   "Search for site by username",
@@ -51,7 +51,7 @@ tinygo search user some_username -p
 	},
 }
 
-var SearchbySiteName = &cobra.Command{
+var searchbySiteName = &cobra.Command{
 	Use:   "site",
 	Short: "Search for site by sitename",
 	Example: `
@@ -86,8 +86,8 @@ tinygo search site some_sitename -p
 
 func init() {
 	rootCmd.AddCommand(searchCmd)
-	searchCmd.AddCommand(SearchByUserName)
-	searchCmd.AddCommand(SearchbySiteName)
+	searchCmd.AddCommand(searchByUserName)
+	searchCmd.AddCommand(searchbySiteName)
 
 	// Here you will define your flags and configuration settings.
 
