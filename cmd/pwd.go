@@ -25,7 +25,7 @@ parse 'c' as argument to copy it without displaying it
 			if args[0] == "c" {
 				utils.CopyToClipboard(pwd)
 				fmt.Println("Copied to clipboard")
-			}else {
+			} else {
 				log.Fatalf("Run `%s pwd -h` to see how to use this command", rootCmd.Use)
 			}
 		}
