@@ -2,6 +2,8 @@ package utils
 
 import (
 	"crypto/rand"
+
+	"github.com/atotto/clipboard"
 )
 
 // Returns a random 15 character string from the collection
@@ -19,7 +21,8 @@ func GeneratePassword() string {
 	return string(pwd)
 }
 
-// TODO:: find how to implement without Xclip or Xcel
-//
 // Copies generated string to clipboard
-func CopyToClipboard() {}
+func CopyToClipboard(text string) error {
+	err := clipboard.WriteAll(text)
+	return err
+}

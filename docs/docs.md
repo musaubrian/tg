@@ -22,10 +22,11 @@ import "github.com/musaubrian/tinygo/cmd"
 
 ## Index
 
-- [func Execute()](<#func-execute>)
+- [func Execute\(\)](<#Execute>)
 
 
-## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L25>)
+<a name="Execute"></a>
+## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L28>)
 
 ```go
 func Execute()
@@ -43,16 +44,18 @@ Package model sets up the database and defines functions that interact with the 
 
 ## Index
 
-- [func AddSite()](<#func-addsite>)
-- [func DeleteSite()](<#func-deletesite>)
-- [func SearchSite()](<#func-searchsite>)
-- [func SetupDB() error](<#func-setupdb>)
-- [func UpdateSite()](<#func-updatesite>)
-- [type Site](<#type-site>)
-  - [func ListAll() []Site](<#func-listall>)
+- [func AddSite\(\)](<#AddSite>)
+- [func DeleteSite\(value string, recordType string\)](<#DeleteSite>)
+- [func GetInput\(prompt string\) string](<#GetInput>)
+- [func SetupDB\(\) error](<#SetupDB>)
+- [func UpdateSite\(\)](<#UpdateSite>)
+- [type Site](<#Site>)
+  - [func ListAll\(\) \[\]Site](<#ListAll>)
+  - [func SearchRecords\(value string, recordType string\) \(\[\]Site, error\)](<#SearchRecords>)
 
 
-## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L34>)
+<a name="AddSite"></a>
+## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L37>)
 
 ```go
 func AddSite()
@@ -60,22 +63,25 @@ func AddSite()
 
 Adds a new site's details to the db
 
-## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L68>)
+<a name="DeleteSite"></a>
+## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L90>)
 
 ```go
-func DeleteSite()
+func DeleteSite(value string, recordType string)
 ```
 
 Delete records associated with a site
 
-## func [SearchSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L77>)
+<a name="GetInput"></a>
+## func [GetInput](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L23>)
 
 ```go
-func SearchSite()
+func GetInput(prompt string) string
 ```
 
-Returns records matching the users prompt\(the site name\)
+Get input from the user
 
+<a name="SetupDB"></a>
 ## func [SetupDB](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model.go#L28>)
 
 ```go
@@ -84,7 +90,8 @@ func SetupDB() error
 
 SetupDb creates a connection to the db and initializes the table and columns Returns a possible error
 
-## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L46>)
+<a name="UpdateSite"></a>
+## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L49>)
 
 ```go
 func UpdateSite()
@@ -92,6 +99,7 @@ func UpdateSite()
 
 Updates the contents of a specified site
 
+<a name="Site"></a>
 ## type [Site](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model.go#L14-L19>)
 
 Site defines the structure of the db
@@ -105,13 +113,23 @@ type Site struct {
 }
 ```
 
-### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L97>)
+<a name="ListAll"></a>
+### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L123>)
 
 ```go
 func ListAll() []Site
 ```
 
 Returns all the records in the db
+
+<a name="SearchRecords"></a>
+### func [SearchRecords](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L103>)
+
+```go
+func SearchRecords(value string, recordType string) ([]Site, error)
+```
+
+Returns records matching the users prompt\(the site name\)
 
 # utils
 
@@ -123,22 +141,24 @@ Package utils defines utility functions
 
 ## Index
 
-- [func CopyToClipboard()](<#func-copytoclipboard>)
-- [func CreateDir() error](<#func-createdir>)
-- [func GeneratePassword() string](<#func-generatepassword>)
-- [func GetPath() (string, error)](<#func-getpath>)
+- [func CopyToClipboard\(text string\) error](<#CopyToClipboard>)
+- [func CreateDir\(\) error](<#CreateDir>)
+- [func GeneratePassword\(\) string](<#GeneratePassword>)
+- [func GetPath\(\) \(string, error\)](<#GetPath>)
 
 
-## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L25>)
+<a name="CopyToClipboard"></a>
+## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L27>)
 
 ```go
-func CopyToClipboard()
+func CopyToClipboard(text string) error
 ```
 
 TODO:: find how to implement without Xclip or Xcel
 
 Copies generated string to clipboard
 
+<a name="CreateDir"></a>
 ## func [CreateDir](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/dir.go#L27>)
 
 ```go
@@ -147,7 +167,8 @@ func CreateDir() error
 
 Creates the 'db/' directory Skips it if the directory exist
 
-## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L8>)
+<a name="GeneratePassword"></a>
+## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L10>)
 
 ```go
 func GeneratePassword() string
@@ -155,6 +176,7 @@ func GeneratePassword() string
 
 Returns a random 15 character string from the collection
 
+<a name="GetPath"></a>
 ## func [GetPath](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/dir.go#L10>)
 
 ```go
@@ -162,7 +184,5 @@ func GetPath() (string, error)
 ```
 
 Get full path to db location parent
-
-
 
 Generated by [gomarkdoc](<https://github.com/princjef/gomarkdoc>)
