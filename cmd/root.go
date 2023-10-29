@@ -17,7 +17,7 @@ var rootCmd = &cobra.Command{
 	Use:     "tinygo",
 	Short:   "A cli tool to help manage passwords",
 	Long:    `A cli tool to help manage your logins(username and passwords)`,
-	Version: "0.7.0",
+	Version: "0.7.1",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.

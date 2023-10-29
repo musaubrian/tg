@@ -26,7 +26,7 @@ import "github.com/musaubrian/tinygo/cmd"
 
 
 <a name="Execute"></a>
-## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L28>)
+## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L25>)
 
 ```go
 func Execute()
@@ -45,7 +45,7 @@ Package model sets up the database and defines functions that interact with the 
 ## Index
 
 - [func AddSite\(\)](<#AddSite>)
-- [func DeleteSite\(value string, recordType string\)](<#DeleteSite>)
+- [func DeleteRecord\(value string, recordType string\)](<#DeleteRecord>)
 - [func GetInput\(prompt string\) string](<#GetInput>)
 - [func SetupDB\(\) error](<#SetupDB>)
 - [func UpdateSite\(\)](<#UpdateSite>)
@@ -63,11 +63,11 @@ func AddSite()
 
 Adds a new site's details to the db
 
-<a name="DeleteSite"></a>
-## func [DeleteSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L90>)
+<a name="DeleteRecord"></a>
+## func [DeleteRecord](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L90>)
 
 ```go
-func DeleteSite(value string, recordType string)
+func DeleteRecord(value string, recordType string)
 ```
 
 Delete records associated with a site
@@ -148,7 +148,7 @@ Package utils defines utility functions
 
 
 <a name="CopyToClipboard"></a>
-## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L25>)
+## func [CopyToClipboard](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwd.go#L25>)
 
 ```go
 func CopyToClipboard(text string) error
@@ -166,7 +166,7 @@ func CreateDir() error
 Creates the 'db/' directory Skips it if the directory exist
 
 <a name="GeneratePassword"></a>
-## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwdGen.go#L10>)
+## func [GeneratePassword](<https://github.com/musaubrian/tinygo/blob/main/internal/utils/pwd.go#L10>)
 
 ```go
 func GeneratePassword() string
