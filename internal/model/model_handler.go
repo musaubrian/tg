@@ -87,7 +87,7 @@ func UpdateSite() {
 }
 
 // Delete records associated with a site
-func DeleteSite(value string, recordType string) {
+func DeleteRecord(value string, recordType string) {
 	var site Site
 	if recordType == "site" {
 		db.Where("name = ?", value).Delete(&site)
@@ -104,11 +104,11 @@ func SearchRecords(value string, recordType string) ([]Site, error) {
 	var nothingFound error
 	var result *gorm.DB
 
-	prepd_sitename := "%" + value + "%"
+	prepd_value := "%" + value + "%"
 	if recordType == "sitename" {
-		result = db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_sitename).Find(&searchResults)
+		result = db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_value).Find(&searchResults)
 	} else {
-		result = db.Raw("SELECT * FROM `Sites` WHERE user_name LIKE ?", prepd_sitename).Find(&searchResults)
+		result = db.Raw("SELECT * FROM `Sites` WHERE user_name LIKE ?", prepd_value).Find(&searchResults)
 	}
 	if result.RowsAffected == 0 {
 		err := fmt.Sprintf("No record found matching [%s]\n", value)

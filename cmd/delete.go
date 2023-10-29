@@ -22,7 +22,7 @@ var deleteSiteCmd = &cobra.Command{
 	Short: "Remove a record using its site name",
 	Run: func(cmd *cobra.Command, args []string) {
 		siteName := model.GetInput("SiteName")
-		model.DeleteSite(siteName, "site")
+		model.DeleteRecord(siteName, "site")
 	},
 }
 var deleteSiteByUserCmd = &cobra.Command{
@@ -36,7 +36,7 @@ If multiple sites have the same username, they will all be deleted
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		userName := model.GetInput("UserName")
-		model.DeleteSite(userName, "username")
+		model.DeleteRecord(userName, "username")
 	},
 }
 
