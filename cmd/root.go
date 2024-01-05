@@ -3,6 +3,7 @@ package cmd
 import (
 	"log"
 	"os"
+	"path"
 
 	"github.com/cheynewallace/tabby"
 	"github.com/musaubrian/tinygo/internal/model"
@@ -28,11 +29,17 @@ func Execute() {
 		log.Fatal("Cannot create directory: ", err)
 	}
 
-	if err := model.SetupDB(); err != nil {
+	homePath, err := utils.GetPath()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fullPath := path.Join(homePath, "tinygo.db")
+
+	if err := model.SetupDB(fullPath); err != nil {
 		log.Fatal("Db setup error ", err)
 	}
 
-	err := rootCmd.Execute()
+	err = rootCmd.Execute()
 	if err != nil {
 		os.Exit(1)
 	}

@@ -7,7 +7,8 @@ import (
 )
 
 func TestSetupDb(t *testing.T) {
-	err := model.SetupDB()
+
+	err := model.SetupDB("../../test.db")
 	if err != nil {
 		t.Error("Expected nil got an error")
 	}
