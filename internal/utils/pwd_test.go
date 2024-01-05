@@ -1,6 +1,9 @@
 package utils_test
 
 import (
+	"log"
+	"os/exec"
+	"strings"
 	"testing"
 
 	"github.com/atotto/clipboard"
@@ -17,6 +20,11 @@ func TestGeneratePassword(t *testing.T) {
 }
 
 func TestCopyToClipboard(t *testing.T) {
+	cmdRes, _ := exec.Command("xclip", "-h").CombinedOutput()
+	if !strings.Contains(string(cmdRes), "usage") {
+		log.Println("No utilities available for copying (x-clip)\n skipping test")
+		return
+	}
 	testStr := "This should be copied and retrieved from the clipboard"
 	err := utils.CopyToClipboard(testStr)
 	if err != nil {
