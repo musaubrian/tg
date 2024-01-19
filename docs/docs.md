@@ -3,7 +3,7 @@
 # tinygo
 
 ```go
-import "github.com/musaubrian/tinygo"
+import "github.com/musaubrian/tg"
 ```
 
 Tinygo is a Cli tool to help manage your login credentials, everything is stored locally so you can rest easy
@@ -17,7 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 # cmd
 
 ```go
-import "github.com/musaubrian/tinygo/cmd"
+import "github.com/musaubrian/tg/cmd"
 ```
 
 ## Index
@@ -26,7 +26,7 @@ import "github.com/musaubrian/tinygo/cmd"
 
 
 <a name="Execute"></a>
-## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L25>)
+## func [Execute](<https://github.com/musaubrian/tinygo/blob/main/cmd/root.go#L26>)
 
 ```go
 func Execute()
@@ -37,7 +37,7 @@ Execute adds all child commands to the root command and sets flags appropriately
 # model
 
 ```go
-import "github.com/musaubrian/tinygo/internal/model"
+import "github.com/musaubrian/tg/internal/model"
 ```
 
 Package model sets up the database and defines functions that interact with the db
@@ -45,17 +45,18 @@ Package model sets up the database and defines functions that interact with the 
 ## Index
 
 - [func AddSite\(\)](<#AddSite>)
-- [func DeleteRecord\(value string, recordType string\)](<#DeleteRecord>)
+- [func DeleteRecord\(value string, recordType RecordType\)](<#DeleteRecord>)
 - [func GetInput\(prompt string\) string](<#GetInput>)
-- [func SetupDB\(\) error](<#SetupDB>)
+- [func SetupDB\(dbLoc string\) error](<#SetupDB>)
 - [func UpdateSite\(\)](<#UpdateSite>)
+- [type RecordType](<#RecordType>)
 - [type Site](<#Site>)
   - [func ListAll\(\) \[\]Site](<#ListAll>)
-  - [func SearchRecords\(value string, recordType string\) \(\[\]Site, error\)](<#SearchRecords>)
+  - [func SearchRecords\(value string, searchBy RecordType\) \(\[\]Site, error\)](<#SearchRecords>)
 
 
 <a name="AddSite"></a>
-## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L37>)
+## func [AddSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L44>)
 
 ```go
 func AddSite()
@@ -64,16 +65,16 @@ func AddSite()
 Adds a new site's details to the db
 
 <a name="DeleteRecord"></a>
-## func [DeleteRecord](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L90>)
+## func [DeleteRecord](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L97>)
 
 ```go
-func DeleteRecord(value string, recordType string)
+func DeleteRecord(value string, recordType RecordType)
 ```
 
 Delete records associated with a site
 
 <a name="GetInput"></a>
-## func [GetInput](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L23>)
+## func [GetInput](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L30>)
 
 ```go
 func GetInput(prompt string) string
@@ -82,16 +83,16 @@ func GetInput(prompt string) string
 Get input from the user
 
 <a name="SetupDB"></a>
-## func [SetupDB](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model.go#L28>)
+## func [SetupDB](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model.go#L25>)
 
 ```go
-func SetupDB() error
+func SetupDB(dbLoc string) error
 ```
 
 SetupDb creates a connection to the db and initializes the table and columns Returns a possible error
 
 <a name="UpdateSite"></a>
-## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L49>)
+## func [UpdateSite](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L56>)
 
 ```go
 func UpdateSite()
@@ -99,8 +100,26 @@ func UpdateSite()
 
 Updates the contents of a specified site
 
+<a name="RecordType"></a>
+## type [RecordType](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L15>)
+
+
+
+```go
+type RecordType int
+```
+
+<a name="Username"></a>
+
+```go
+const (
+    Username RecordType = iota
+    SiteName
+)
+```
+
 <a name="Site"></a>
-## type [Site](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model.go#L14-L19>)
+## type [Site](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model.go#L11-L16>)
 
 Site defines the structure of the db
 
@@ -114,7 +133,7 @@ type Site struct {
 ```
 
 <a name="ListAll"></a>
-### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L122>)
+### func [ListAll](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L131>)
 
 ```go
 func ListAll() []Site
@@ -123,10 +142,10 @@ func ListAll() []Site
 Returns all the records in the db
 
 <a name="SearchRecords"></a>
-### func [SearchRecords](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L102>)
+### func [SearchRecords](<https://github.com/musaubrian/tinygo/blob/main/internal/model/model_handler.go#L109>)
 
 ```go
-func SearchRecords(value string, recordType string) ([]Site, error)
+func SearchRecords(value string, searchBy RecordType) ([]Site, error)
 ```
 
 Returns records matching the users prompt\(the site name\)
@@ -134,7 +153,7 @@ Returns records matching the users prompt\(the site name\)
 # utils
 
 ```go
-import "github.com/musaubrian/tinygo/internal/utils"
+import "github.com/musaubrian/tg/internal/utils"
 ```
 
 Package utils defines utility functions

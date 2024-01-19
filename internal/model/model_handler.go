@@ -12,6 +12,13 @@ import (
 	"gorm.io/gorm"
 )
 
+type RecordType int
+
+const (
+	Username RecordType = iota
+	SiteName
+)
+
 var (
 	bold    = color.New(color.Bold)
 	success = color.New(color.Bold, color.FgGreen)
@@ -87,9 +94,9 @@ func UpdateSite() {
 }
 
 // Delete records associated with a site
-func DeleteRecord(value string, recordType string) {
+func DeleteRecord(value string, recordType RecordType) {
 	var site Site
-	if recordType == "site" {
+	if recordType == SiteName {
 		db.Where("name = ?", value).Delete(&site)
 	} else {
 		db.Where("user_name = ?", value).Delete(&site)
@@ -99,16 +106,18 @@ func DeleteRecord(value string, recordType string) {
 }
 
 // Returns records matching the users prompt(the site name)
-func SearchRecords(value string, recordType string) ([]Site, error) {
+func SearchRecords(value string, searchBy RecordType) ([]Site, error) {
 	var searchResults []Site
 	var nothingFound error
 	var result *gorm.DB
 
 	prepd_value := "%" + value + "%"
-	if recordType == "sitename" {
+	if searchBy == SiteName {
 		result = db.Raw("SELECT * FROM `Sites` WHERE name LIKE ?", prepd_value).Find(&searchResults)
-	} else {
+	} else if searchBy == Username {
 		result = db.Raw("SELECT * FROM `Sites` WHERE user_name LIKE ?", prepd_value).Find(&searchResults)
+	} else {
+		return searchResults, errors.New("invalid option")
 	}
 	if result.RowsAffected == 0 {
 		err := fmt.Sprintf("No record found matching [%s]\n", value)

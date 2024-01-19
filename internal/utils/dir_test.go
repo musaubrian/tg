@@ -3,7 +3,7 @@ package utils_test
 import (
 	"testing"
 
-	"github.com/musaubrian/tinygo/internal/utils"
+	"github.com/musaubrian/tg/internal/utils"
 )
 
 func TestCreateDir(t *testing.T) {

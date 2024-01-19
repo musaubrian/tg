@@ -1,6 +1,6 @@
 package main
 
-import "github.com/musaubrian/tinygo/cmd"
+import "github.com/musaubrian/tg/cmd"
 
 func main() {
 	cmd.Execute()

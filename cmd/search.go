@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/musaubrian/tinygo/internal/model"
+	"github.com/musaubrian/tg/internal/model"
+	"github.com/musaubrian/tg/internal/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +23,7 @@ var searchByUserName = &cobra.Command{
 	Short:   "Search for site by username",
 	Example: `
 
-tinygo search user some_username
+tg search user some_username
 tinygo search user some_username -p
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -33,7 +34,16 @@ tinygo search user some_username -p
 		if err != nil {
 			log.Fatal(err)
 		}
-		results, err := model.SearchRecords(args[0], "username")
+		results, err := model.SearchRecords(args[0], model.Username)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if len(results) == 1 {
+			utils.CopyToClipboard(results[0].Password)
+			fmt.Printf("Copied [%s's] password to clipboard\n", results[0].UserName)
+			return
+		}
 		if pretty {
 			t.AddHeader("\n#", "USER_NAME", "SITE_NAME", "PASSWORD")
 			for i, v := range results {
@@ -66,7 +76,10 @@ tinygo search site some_sitename -p
 		if err != nil {
 			log.Fatal(err)
 		}
-		results, err := model.SearchRecords(args[0], "sitename")
+		results, err := model.SearchRecords(args[0], model.SiteName)
+		if err != nil {
+			log.Fatal(err)
+		}
 		if pretty {
 			t.AddHeader("\n#", "USER_NAME", "SITE_NAME", "PASSWORD")
 			for i, v := range results {
