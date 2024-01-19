@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/musaubrian/tinygo/internal/utils"
+	"github.com/musaubrian/tg/internal/utils"
 	"github.com/spf13/cobra"
 )
 

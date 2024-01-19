@@ -6,8 +6,8 @@ import (
 	"path"
 
 	"github.com/cheynewallace/tabby"
-	"github.com/musaubrian/tinygo/internal/model"
-	"github.com/musaubrian/tinygo/internal/utils"
+	"github.com/musaubrian/tg/internal/model"
+	"github.com/musaubrian/tg/internal/utils"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +15,7 @@ var t = tabby.New()
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:     "tinygo",
+	Use:     "tg",
 	Short:   "A cli tool to help manage passwords",
 	Long:    `A cli tool to help manage your logins(username and passwords)`,
 	Version: "0.7.1",

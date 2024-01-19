@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/atotto/clipboard"
-	"github.com/musaubrian/tinygo/internal/utils"
+	"github.com/musaubrian/tg/internal/utils"
 )
 
 func TestGeneratePassword(t *testing.T) {

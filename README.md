@@ -1,8 +1,8 @@
-# TinyGo
+# TG
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/musaubrian/tinygo)](https://goreportcard.com/report/github.com/musaubrian/tinygo)
-[![Go Reference](https://pkg.go.dev/badge/github.com/musaubrian/tinygo.svg)](https://pkg.go.dev/github.com/musaubrian/tinygo)
-[![tests](https://github.com/musaubrian/tinygo/actions/workflows/test.yml/badge.svg)](https://github.com/musaubrian/tinygo/actions/workflows/test.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/musaubrian/tg)](https://goreportcard.com/report/github.com/musaubrian/tg)
+[![Go Reference](https://pkg.go.dev/badge/github.com/musaubrian/tg.svg)](https://pkg.go.dev/github.com/musaubrian/tg)
+[![tests](https://github.com/musaubrian/tg/actions/workflows/test.yml/badge.svg)](https://github.com/musaubrian/tg/actions/workflows/test.yml)
 
 > A cli tool to help manage your passwords
 
@@ -18,17 +18,17 @@ and i actually used a db(**sqlite**) instead of a json file.
 If you have go installed simply run
 
 ```sh
-go install github.com/musaubrian/tinygo@latest
+go install github.com/musaubrian/tg@latest
 ```
 
 or
 
 ```sh
-git clone https://github.com/musuabrian/tinygo
-cd tinygo
+git clone https://github.com/musuabrian/tg
+cd tg
 go build .
 ```
 
 Contributions are welcomed
 
-> ## Find the docs [here](./docs/docs.md)
+> Auto generated docs [here](./docs/docs.md)

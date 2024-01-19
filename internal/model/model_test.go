@@ -3,7 +3,7 @@ package model_test
 import (
 	"testing"
 
-	"github.com/musaubrian/tinygo/internal/model"
+	"github.com/musaubrian/tg/internal/model"
 )
 
 func TestSetupDb(t *testing.T) {

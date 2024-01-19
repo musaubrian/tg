@@ -1,4 +1,4 @@
-module github.com/musaubrian/tinygo
+module github.com/musaubrian/tg
 
 go 1.19
 

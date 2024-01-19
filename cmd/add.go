@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/musaubrian/tinygo/internal/model"
+	"github.com/musaubrian/tg/internal/model"
 	"github.com/spf13/cobra"
 )
 

@@ -1,7 +1,11 @@
 package cmd
 
 import (
-	"github.com/musaubrian/tinygo/internal/model"
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/musaubrian/tg/internal/model"
 	"github.com/spf13/cobra"
 )
 
@@ -22,7 +26,7 @@ var deleteSiteCmd = &cobra.Command{
 	Short: "Remove a record using its site name",
 	Run: func(cmd *cobra.Command, args []string) {
 		siteName := model.GetInput("SiteName")
-		model.DeleteRecord(siteName, "site")
+		model.DeleteRecord(siteName, model.SiteName)
 	},
 }
 var deleteSiteByUserCmd = &cobra.Command{
@@ -36,7 +40,18 @@ If multiple sites have the same username, they will all be deleted
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		userName := model.GetInput("UserName")
-		model.DeleteRecord(userName, "username")
+		fmt.Printf("This will delete all records with the username [%s]\n", userName)
+		agree := model.GetInput("Continue y/N")
+
+		if len(agree) < 1 || agree == "n" {
+			fmt.Println("Stopping process")
+			os.Exit(1)
+		} else if agree == "y" {
+			model.DeleteRecord(userName, model.Username)
+		} else {
+			log.Fatal("Unknown option")
+		}
+
 	},
 }
 
