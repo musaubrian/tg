@@ -15,10 +15,9 @@ var t = tabby.New()
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:     "tg",
-	Short:   "A cli tool to help manage passwords",
-	Long:    `A cli tool to help manage your logins(username and passwords)`,
-	Version: "0.7.1",
+	Use:   "tg",
+	Short: "A cli tool to help manage passwords",
+	Long:  `A cli tool to help manage your logins(username and passwords)`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
