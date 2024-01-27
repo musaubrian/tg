@@ -41,7 +41,7 @@ tinygo search user some_username -p
 
 		if len(results) == 1 {
 			utils.CopyToClipboard(results[0].Password)
-			fmt.Printf("Copied [%s's] password to clipboard\n", results[0].UserName)
+			fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
 			return
 		}
 		if pretty {
@@ -79,6 +79,11 @@ tinygo search site some_sitename -p
 		results, err := model.SearchRecords(args[0], model.SiteName)
 		if err != nil {
 			log.Fatal(err)
+		}
+		if len(results) == 1 {
+			utils.CopyToClipboard(results[0].Password)
+			fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
+			return
 		}
 		if pretty {
 			t.AddHeader("\n#", "USER_NAME", "SITE_NAME", "PASSWORD")
