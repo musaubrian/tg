@@ -53,44 +53,31 @@ func AddSite() {
 }
 
 // Updates the contents of a specified site
-func UpdateSite() {
-	var (
-		site      Site
-		prev_site Site
-	)
+func UpdateRecord(recordType RecordType) {
+	var site Site
 
 	bold.Println("\n// Updating record")
-	sitename := GetInput("Site to Update")
-	err := db.Where("name = ?", sitename).First(&site)
-	if err.Error != nil {
-		del.Printf("Record not found")
-		return
+
+	if recordType == SiteName {
+		sitename := GetInput("Site record to Update")
+		err := db.Where("site = ?", sitename).First(&site)
+		if err.Error != nil {
+			del.Printf("Record not found")
+			return
+		}
+		s := UpdateRec(site)
+		success.Printf("\nUpdated {%s} to {%s}\n\n", sitename, s.Name)
+	} else if recordType == Username {
+		user := GetInput("User record to Update")
+		err := db.Where("user_name = ?", user).First(&site)
+		if err.Error != nil {
+			del.Printf("Record not found")
+			return
+		}
+		s := UpdateRec(site)
+		success.Printf("\nUpdated {%s} to {%s}\n\n", user, s.UserName)
 	}
 
-	prev_site = site
-	italic.Println("Press Enter/Return without any value to retain previous values")
-	bold.Printf(
-		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n",
-		site.Name, site.UserName, site.Password)
-
-	site.Name = GetInput("New site name")
-	if site.Name == "" {
-		site.Name = prev_site.Name
-		italic.Printf("Reusing previous sitename: %s\n", site.Name)
-	}
-	site.UserName = GetInput("New userName")
-
-	if site.UserName == "" {
-		site.UserName = prev_site.UserName
-		italic.Printf("Reusing previous username: %s\n", site.UserName)
-	}
-	site.Password = GetInput("New Password")
-	if site.Password == "" {
-		site.Password = prev_site.Password
-		italic.Printf("Reusing previous password: %s\n", site.Password)
-	}
-	db.Save(&site)
-	success.Printf("\nUpdated {%s} to {%s}\n\n", sitename, site.Name)
 }
 
 // Delete records associated with a site
@@ -134,4 +121,31 @@ func ListAll() []Site {
 	bold.Println("\n// Listing all records")
 
 	return sites
+}
+
+func UpdateRec(site Site) Site {
+	prev_site := site
+	italic.Println("Press Enter/Return without any value to retain previous values")
+	bold.Printf(
+		"\nOld details\nSiteName: {%s} UserName: {%s}  Password: {%s}\n",
+		site.Name, site.UserName, site.Password)
+
+	site.Name = GetInput("New site name")
+	if site.Name == "" {
+		site.Name = prev_site.Name
+		italic.Printf("Reusing previous sitename: %s\n", site.Name)
+	}
+	site.UserName = GetInput("New userName")
+
+	if site.UserName == "" {
+		site.UserName = prev_site.UserName
+		italic.Printf("Reusing previous username: %s\n", site.UserName)
+	}
+	site.Password = GetInput("New Password")
+	if site.Password == "" {
+		site.Password = prev_site.Password
+		italic.Printf("Reusing previous password: %s\n", site.Password)
+	}
+	db.Save(&site)
+	return site
 }
