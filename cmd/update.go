@@ -10,14 +10,27 @@ var updateCmd = &cobra.Command{
 	Use:     "update",
 	Short:   "Update a single site records",
 	Aliases: []string{"u"},
-	// Long: ``,
+}
+
+var updatebyUserName = &cobra.Command{
+	Use:   "user",
+	Short: "Update a record by the username",
 	Run: func(cmd *cobra.Command, args []string) {
-		model.UpdateSite()
+		model.UpdateRecord(model.Username)
+	},
+}
+var updatebySiteName = &cobra.Command{
+	Use:   "site",
+	Short: "Update a record by the sitename",
+	Run: func(cmd *cobra.Command, args []string) {
+		model.UpdateRecord(model.SiteName)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(updateCmd)
+	updateCmd.AddCommand(updatebySiteName)
+	updateCmd.AddCommand(updatebyUserName)
 
 	// Here you will define your flags and configuration settings.
 
