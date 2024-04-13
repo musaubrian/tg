@@ -5,13 +5,16 @@ import (
 	"os"
 	"path"
 
-	"github.com/cheynewallace/tabby"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/charmbracelet/lipgloss/table"
 	"github.com/musaubrian/tg/internal/model"
 	"github.com/musaubrian/tg/internal/utils"
 	"github.com/spf13/cobra"
 )
 
-var t = tabby.New()
+var t = table.New().StyleFunc(func(row, col int) lipgloss.Style {
+	return lipgloss.NewStyle().Width(26)
+})
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -54,5 +57,6 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	rootCmd.PersistentFlags().BoolP("pretty", "p", false, "List results in a nice table format")
+	rootCmd.PersistentFlags().BoolP("pretty", "p", true, "List results in a nice table format")
+	rootCmd.PersistentFlags().BoolP("copy", "c", false, "Copy password to clipboard")
 }

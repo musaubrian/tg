@@ -19,16 +19,17 @@ parse 'c' as argument to copy it without displaying it
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		pwd := utils.GeneratePassword()
-		if len(args) < 1 {
-			fmt.Println(pwd)
-		} else {
-			if args[0] == "c" {
-				utils.CopyToClipboard(pwd)
-				fmt.Println("Copied to clipboard")
-			} else {
-				log.Fatalf("Run `%s pwd -h` to see how to use this command", rootCmd.Use)
-			}
+
+		copyPwd, err := rootCmd.Flags().GetBool("copy")
+		if err != nil {
+			log.Fatal(err)
 		}
+		if copyPwd {
+			utils.CopyToClipboard(pwd)
+			fmt.Println("Copied to clipboard")
+			return
+		}
+		fmt.Println(pwd)
 	},
 }
 

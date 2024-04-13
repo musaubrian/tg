@@ -12,7 +12,7 @@ import (
 var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all records in the database",
-	Long: `Lists all the records(sitename, username, password) available 
+	Long: `Lists all the records(sitename, username, password) available
     in the database`,
 	Aliases: []string{"l"},
 	Run: func(cmd *cobra.Command, args []string) {
@@ -22,11 +22,12 @@ var listCmd = &cobra.Command{
 		}
 		sites := model.ListAll()
 		if pretty {
-			t.AddHeader("\n#", "USERNAME", "SITE_NAME", "PASSWORD")
-			for i, site := range sites {
-				t.AddLine(i+1, site.UserName, site.Name, site.Password)
+			t := t.Headers("USERNAME", "SITE_NAME", "PASSWORD")
+
+			for _, site := range sites {
+				t.Row(site.UserName, site.Name, site.Password)
 			}
-			t.Print()
+			fmt.Println(t)
 		} else {
 			for _, site := range sites {
 				fmt.Println("\nSiteName:", site.Name)
