@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/charmbracelet/huh"
 	"github.com/musaubrian/tg/internal/model"
 	"github.com/spf13/cobra"
 )
@@ -25,7 +26,22 @@ var deleteSiteCmd = &cobra.Command{
 	Use:   "site",
 	Short: "Remove a record using its site name",
 	Run: func(cmd *cobra.Command, args []string) {
+		var confirm bool
+
 		siteName := model.GetInput("SiteName")
+
+		title := fmt.Sprintf("This will delete all records related to site [%s]\n\nDo you want to continue?", siteName)
+
+		err := huh.NewConfirm().Title(title).Affirmative("Yes").Negative("No!!").Value(&confirm).Run()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if !confirm {
+			fmt.Println("Stopping process")
+			os.Exit(1)
+		}
+
 		model.DeleteRecord(siteName, model.SiteName)
 	},
 }
@@ -39,19 +55,21 @@ CAUTION!!
 If multiple sites have the same username, they will all be deleted
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
-		userName := model.GetInput("UserName")
-		fmt.Printf("This will delete all records with the username [%s]\n", userName)
-		agree := model.GetInput("Continue y/N")
+		var confirm bool
 
-		if len(agree) < 1 || agree == "n" {
+		userName := model.GetInput("UserName")
+		title := fmt.Sprintf("This will delete all records related to the user [%s]\n\nDo you want to continue?", userName)
+
+		err := huh.NewConfirm().Title(title).Affirmative("Yes").Negative("No!!").Value(&confirm).Run()
+		if err != nil {
+			log.Fatal(err)
+		}
+		if !confirm {
 			fmt.Println("Stopping process")
 			os.Exit(1)
-		} else if agree == "y" {
-			model.DeleteRecord(userName, model.Username)
-		} else {
-			log.Fatal("Unknown option")
 		}
 
+		model.DeleteRecord(userName, model.Username)
 	},
 }
 

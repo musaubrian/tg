@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/charmbracelet/huh"
 	"github.com/musaubrian/tg/internal/model"
 	"github.com/musaubrian/tg/internal/utils"
 	"github.com/spf13/cobra"
@@ -24,13 +25,19 @@ var searchByUserName = &cobra.Command{
 	Example: `
 
 tg search user some_username
-tinygo search user some_username -p
+tg search user some_username -c
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
+		var selectedFromMultiple string
+
 		if len(args) < 1 {
 			log.Fatal("You did not parse value to search for")
 		}
 		pretty, err := rootCmd.Flags().GetBool("pretty")
+		if err != nil {
+			log.Fatal(err)
+		}
+		copyPwd, err := rootCmd.Flags().GetBool("copy")
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -39,17 +46,28 @@ tinygo search user some_username -p
 			log.Fatal(err)
 		}
 
-		if len(results) == 1 {
-			utils.CopyToClipboard(results[0].Password)
-			fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
-			return
-		}
-		if pretty {
-			t.AddHeader("\n#", "USER_NAME", "SITE_NAME", "PASSWORD")
-			for i, v := range results {
-				t.AddLine(i+1, v.UserName, v.Name, v.Password)
+		if copyPwd {
+			if len(results) == 1 {
+				utils.CopyToClipboard(results[0].Password)
+				fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
+				return
+			} else {
+				huh.NewSelect[string]().Title("Multiple values returned, pick from the site you want").Options(
+					generateHuhOpts(results, "user")...,
+				).Value(&selectedFromMultiple).Run()
+
+				utils.CopyToClipboard(selectedFromMultiple)
+				fmt.Println("Copied password to clipboard")
+				return
 			}
-			t.Print()
+		}
+
+		if pretty {
+			t := t.Headers("USERNAME", "SITE_NAME", "PASSWORD")
+			for _, site := range results {
+				t.Row(site.UserName, site.Name, site.Password)
+			}
+			fmt.Println(t)
 		} else {
 			for _, site := range results {
 				fmt.Println("\nSiteName:", site.Name)
@@ -66,9 +84,11 @@ var searchbySiteName = &cobra.Command{
 	Short: "Search for site by sitename",
 	Example: `
 tinygo search site some_sitename
-tinygo search site some_sitename -p
+tinygo search site some_sitename -c
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
+		var selectedFromMultiple string
+
 		if len(args) < 1 {
 			log.Fatal("You did not parse value to search for")
 		}
@@ -80,17 +100,33 @@ tinygo search site some_sitename -p
 		if err != nil {
 			log.Fatal(err)
 		}
-		if len(results) == 1 {
-			utils.CopyToClipboard(results[0].Password)
-			fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
-			return
+		copyPwd, err := rootCmd.Flags().GetBool("copy")
+		if err != nil {
+			log.Fatal(err)
 		}
-		if pretty {
-			t.AddHeader("\n#", "USER_NAME", "SITE_NAME", "PASSWORD")
-			for i, v := range results {
-				t.AddLine(i+1, v.UserName, v.Name, v.Password)
+
+		if copyPwd {
+			if len(results) == 1 {
+				utils.CopyToClipboard(results[0].Password)
+				fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
+				return
+			} else {
+				huh.NewSelect[string]().Title("Multiple values returned, pick the user you want").Options(
+					generateHuhOpts(results, "site")...,
+				).Value(&selectedFromMultiple).Run()
+
+				utils.CopyToClipboard(selectedFromMultiple)
+				fmt.Println("Copied password to clipboard")
+				return
 			}
-			t.Print()
+		}
+
+		if pretty {
+			t := t.Headers("USERNAME", "SITE_NAME", "PASSWORD")
+			for _, site := range results {
+				t.Row(site.UserName, site.Name, site.Password)
+			}
+			fmt.Println(t)
 		} else {
 			for _, site := range results {
 				fmt.Println("\nSiteName:", site.Name)
@@ -116,4 +152,23 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// searchCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func generateHuhOpts(results []model.Site, searchParam string) []huh.Option[string] {
+	var opts []huh.Option[string]
+	for _, v := range results {
+		if searchParam == "site" {
+			opts = append(opts, huh.Option[string]{
+				Key:   v.UserName,
+				Value: v.Password,
+			})
+		} else {
+			opts = append(opts, huh.Option[string]{
+				Key:   v.Name,
+				Value: v.Password,
+			})
+		}
+	}
+
+	return opts
 }

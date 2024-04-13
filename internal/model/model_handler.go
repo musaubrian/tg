@@ -1,13 +1,11 @@
 package model
 
 import (
-	"bufio"
 	"errors"
 	"fmt"
-	"log"
-	"os"
 	"strings"
 
+	"github.com/charmbracelet/huh"
 	"github.com/fatih/color"
 	"gorm.io/gorm"
 )
@@ -28,13 +26,9 @@ var (
 
 // Get input from the user
 func GetInput(prompt string) string {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Printf("$ %s: ", prompt)
+	var result string
 
-	result, err := reader.ReadString('\n')
-	if err != nil {
-		log.Fatal("Could not read input: ", err)
-	}
+	huh.NewInput().Title(prompt).Value(&result).Run()
 
 	result = strings.TrimSuffix(result, "\n")
 	return result
