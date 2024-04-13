@@ -4,7 +4,10 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/musaubrian/tg.svg)](https://pkg.go.dev/github.com/musaubrian/tg)
 [![tests](https://github.com/musaubrian/tg/actions/workflows/test.yml/badge.svg)](https://github.com/musaubrian/tg/actions/workflows/test.yml)
 
-> A cli tool to help manage your passwords
+
+A command line password manager.
+
+ Thats it.
 
 
 ## Installation
@@ -23,4 +26,8 @@ cd tg
 go build .
 ```
 
+or get one of the releases [archives](https://github.com/musaubrian/tg/releases)
+
 Contributions are welcomed
+
+Powered by [huh](https://github.com/charmbracelet/huh) and [lipgloss](https://github.com/charmbracelet/lipgloss)
