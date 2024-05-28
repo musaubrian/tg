@@ -7,8 +7,12 @@ import (
 
 // updateCmd represents the update command
 var updateCmd = &cobra.Command{
-	Use:     "update",
-	Short:   "Update a single site records",
+	Use:   "update",
+	Short: "Update a single site records",
+	Long: `
+Update a single site records either by the user_name or site_name
+NOTE:
+  When there are records with the same user_name, only the first one gets updated`,
 	Aliases: []string{"u"},
 }
 

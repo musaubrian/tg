@@ -3,6 +3,7 @@ package model
 import (
 	"errors"
 	"fmt"
+	"reflect"
 	"strings"
 
 	"github.com/charmbracelet/huh"
@@ -54,13 +55,13 @@ func UpdateRecord(recordType RecordType) {
 
 	if recordType == SiteName {
 		sitename := GetInput("Site record to Update")
-		err := db.Where("site = ?", sitename).First(&site)
+		err := db.Where("name = ?", sitename).First(&site)
 		if err.Error != nil {
 			del.Printf("Record not found")
 			return
 		}
-		s := UpdateRec(site)
-		success.Printf("\nUpdated {%s} to {%s}\n\n", sitename, s.Name)
+		updatedSite := UpdateRec(site)
+		printChanges(site, updatedSite)
 	} else if recordType == Username {
 		user := GetInput("User record to Update")
 		err := db.Where("user_name = ?", user).First(&site)
@@ -68,8 +69,8 @@ func UpdateRecord(recordType RecordType) {
 			del.Printf("Record not found")
 			return
 		}
-		s := UpdateRec(site)
-		success.Printf("\nUpdated {%s} to {%s}\n\n", user, s.UserName)
+		updatesSite := UpdateRec(site)
+		printChanges(site, updatesSite)
 	}
 
 }
@@ -142,4 +143,19 @@ func UpdateRec(site Site) Site {
 	}
 	db.Save(&site)
 	return site
+}
+
+func printChanges(prev, updated Site) {
+	originalValue := reflect.ValueOf(prev)
+	updatedValue := reflect.ValueOf(updated)
+	for i := 0; i < originalValue.NumField(); i++ {
+		origField := originalValue.Field(i)
+		updtField := updatedValue.Field(i)
+		if !reflect.DeepEqual(origField.Interface(), updtField.Interface()) {
+			field := bold.Sprintf("%v", originalValue.Type().Field(i).Name)
+			prevVal := bold.Sprintf("%v", origField.Interface())
+			newVal := bold.Sprintf("%v", updtField.Interface())
+			success.Printf("%s changed from %s to %s\n", field, prevVal, newVal)
+		}
+	}
 }
