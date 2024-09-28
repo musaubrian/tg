@@ -3,6 +3,7 @@ package model
 import (
 	"errors"
 	"fmt"
+	"log"
 	"reflect"
 	"strings"
 
@@ -29,7 +30,9 @@ var (
 func GetInput(prompt string) string {
 	var result string
 
-	huh.NewInput().Title(prompt).Value(&result).Run()
+	if err := huh.NewInput().Title(prompt).Value(&result).Run(); err != nil {
+		log.Fatalln(err)
+	}
 
 	result = strings.TrimSuffix(result, "\n")
 	return result
@@ -50,24 +53,53 @@ func AddSite() {
 // Updates the contents of a specified site
 func UpdateRecord(recordType RecordType) {
 	var site Site
+	var records []Site
 
 	bold.Println("\n// Updating record")
 
 	if recordType == SiteName {
 		sitename := GetInput("Site record to Update")
-		err := db.Where("name = ?", sitename).First(&site)
-		if err.Error != nil {
-			del.Printf("Record not found")
+		db.Raw("SELECT * FROM sites WHERE name = ?", sitename).Find(&records)
+
+		if len(records) == 0 {
+			del.Println("No record found")
 			return
 		}
+
+		if len(records) > 1 {
+			err := huh.NewSelect[Site]().Title("Found more than one record").Options(
+				generateOpts(records)...,
+			).Value(&site).Run()
+			if err != nil {
+				log.Println(err)
+				return
+			}
+		} else {
+			site = records[0]
+		}
+
 		updatedSite := UpdateRec(site)
 		printChanges(site, updatedSite)
+
 	} else if recordType == Username {
 		user := GetInput("User record to Update")
-		err := db.Where("user_name = ?", user).First(&site)
-		if err.Error != nil {
-			del.Printf("Record not found")
+		db.Raw("SELECT * FROM sites WHERE user_name = ?", user).Find(&records)
+
+		if len(records) == 0 {
+			del.Println("No record found")
 			return
+		}
+
+		if len(records) > 1 {
+			err := huh.NewSelect[Site]().Title("Found more than one record").Options(
+				generateOpts(records)...,
+			).Value(&site).Run()
+			if err != nil {
+				log.Println(err)
+				return
+			}
+		} else {
+			site = records[0]
 		}
 		updatesSite := UpdateRec(site)
 		printChanges(site, updatesSite)
@@ -158,4 +190,18 @@ func printChanges(prev, updated Site) {
 			success.Printf("%s changed from %s to %s\n", field, prevVal, newVal)
 		}
 	}
+}
+
+func getRecord() {}
+
+func generateOpts(records []Site) []huh.Option[Site] {
+	opts := []huh.Option[Site]{}
+
+	for _, v := range records {
+		opts = append(opts, huh.Option[Site]{
+			Key:   fmt.Sprintf("%s (%s)", v.UserName, v.Name),
+			Value: v,
+		})
+	}
+	return opts
 }

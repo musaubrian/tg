@@ -31,19 +31,19 @@ tg search user some_username -c
 		var selectedFromMultiple string
 
 		if len(args) < 1 {
-			log.Fatal("You did not parse value to search for")
+			log.Fatalln("You did not parse value to search for")
 		}
 		pretty, err := rootCmd.Flags().GetBool("pretty")
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalln(err)
 		}
 		copyPwd, err := rootCmd.Flags().GetBool("copy")
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalln(err)
 		}
 		results, err := model.SearchRecords(args[0], model.Username)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalln(err)
 		}
 
 		if copyPwd {
@@ -52,9 +52,12 @@ tg search user some_username -c
 				fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
 				return
 			} else {
-				huh.NewSelect[string]().Title("Multiple values returned, pick from the site you want").Options(
+				err := huh.NewSelect[string]().Title("Multiple values returned, pick from the site you want").Options(
 					generateHuhOpts(results, "user")...,
 				).Value(&selectedFromMultiple).Run()
+				if err != nil {
+					log.Fatalln(err)
+				}
 
 				utils.CopyToClipboard(selectedFromMultiple)
 				fmt.Println("Copied password to clipboard")
@@ -90,19 +93,19 @@ tinygo search site some_sitename -c
 		var selectedFromMultiple string
 
 		if len(args) < 1 {
-			log.Fatal("You did not parse value to search for")
+			log.Fatalln("You did not parse value to search for")
 		}
 		pretty, err := rootCmd.Flags().GetBool("pretty")
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalln(err)
 		}
 		results, err := model.SearchRecords(args[0], model.SiteName)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalln(err)
 		}
 		copyPwd, err := rootCmd.Flags().GetBool("copy")
 		if err != nil {
-			log.Fatal(err)
+			log.Fatalln(err)
 		}
 
 		if copyPwd {
@@ -111,9 +114,13 @@ tinygo search site some_sitename -c
 				fmt.Printf("Copied [%s's] password for [%s] to clipboard\n", results[0].UserName, results[0].Name)
 				return
 			} else {
-				huh.NewSelect[string]().Title("Multiple values returned, pick the user you want").Options(
+				err := huh.NewSelect[string]().Title("Multiple values returned, pick the user you want").Options(
 					generateHuhOpts(results, "site")...,
 				).Value(&selectedFromMultiple).Run()
+
+				if err != nil {
+					log.Fatalln(err)
+				}
 
 				utils.CopyToClipboard(selectedFromMultiple)
 				fmt.Println("Copied password to clipboard")
@@ -159,12 +166,12 @@ func generateHuhOpts(results []model.Site, searchParam string) []huh.Option[stri
 	for _, v := range results {
 		if searchParam == "site" {
 			opts = append(opts, huh.Option[string]{
-				Key:   v.UserName,
+				Key:   fmt.Sprintf("%s (%s)", v.UserName, v.Name),
 				Value: v.Password,
 			})
 		} else {
 			opts = append(opts, huh.Option[string]{
-				Key:   v.Name,
+				Key:   fmt.Sprintf("%s (%s)", v.Name, v.UserName),
 				Value: v.Password,
 			})
 		}
